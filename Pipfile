@@ -9,6 +9,8 @@ django-cors-headers = "==3.5.0"
 djangorestframework = "==3.11.1"
 psycopg2-binary = "==2.8.6"
 django-tenants = "==3.2.1"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
