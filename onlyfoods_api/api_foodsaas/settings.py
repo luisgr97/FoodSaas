@@ -39,7 +39,7 @@ STATIC_URL = '/static/'
 # Directorio para archivos estaticos
 
 # Configurate at upload files
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = 'static'
 
 # archivos multimedia
 MEDIA_URL = '/media/'
@@ -53,6 +53,12 @@ WSGI_APPLICATION = 'api_foodsaas.wsgi.application'
 
 # directorio raiz de enrutamiento
 ROOT_URLCONF = 'api_foodsaas.urls'
+
+# --- React views template.
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend') 
+STATICFILES_DIRS = [
+    os.path.join(REACT_APP_DIR, 'build', 'static'),
+]
 
 
 """---------------------------Zona para configuraciones de las apps del proyecto.----------------------"""
@@ -79,6 +85,7 @@ SHARED_APPS = (
     # aplicaciones locales.
     'django_tenants',  # aplicacion que administra los tenants.
     'tenant',
+    'frontend',
     'users',
     'accesspoint',
 ) + DJANGO_APPS + THIRD_PARTY_APPS

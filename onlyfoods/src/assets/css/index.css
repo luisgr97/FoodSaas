@@ -1,0 +1,126 @@
+.contentStart{
+    margin-top: 100px;
+}
+
+.leaflet-container {
+    height: 600px;
+    width: 100%;
+  }
+  
+.amapa{
+    margin-top: 85px;
+    margin-bottom: 50px;
+    background-color: red;
+  }
+
+.creatorsMap{
+  position: fixed;
+}
+
+.removeBtn{
+  background-color: white;
+  border-style: none;
+  border-radius: 20px;
+  color: red;
+}
+
+.removeBtn:hover{
+  background-color: red;
+  color: white;
+}
+
+.inactiveBtn{
+  background-color: white;
+  border-style: none;
+  border-radius: 20px;
+  color: blueviolet;
+}
+
+.inactiveBtn:hover{
+  background-color: blueviolet;
+  color: white;
+}
+
+.newTrans{
+  background-color: blue;
+  border-style: none;
+  border-radius: 30px;
+  font-size: 20px;
+  color: white;
+}
+
+.newTrans:hover{
+  background-color: darkturquoise;
+}
+
+.newSubs{
+  background-color: firebrick;
+  border-style: none;
+  border-radius: 30px;
+  font-size: 20px;
+  color: white;
+}
+
+.newSubs:hover{
+  background-color: coral;
+}
+
+.newConts{
+  background-color: green;
+  border-style: none;
+  border-radius: 30px;
+  font-size: 20px;
+  color: white;
+}
+
+.newConts:hover{
+  background-color: rgb(4, 230, 60);
+}
+
+
+/************************* CHAT BOT **********************/
+
+
+#chat{
+  margin: 0px auto;
+  margin-top: 50px;
+}
+
+.chat_msglist{
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.msgContainer{
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+}
+
+.floatingBot{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin-right: 30px;
+  cursor: pointer;
+  
+}
+
+.bot_on_chat{
+  cursor: pointer;
+}
+
+.floatingChat{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin-right: 30px;
+  width: 300px;
+}
+
+/************************* SAAS **********************/
+
+td {
+  text-align: center;
+  font-size: 15px;
+}

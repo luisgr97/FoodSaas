@@ -11,6 +11,8 @@ psycopg2-binary = "==2.8.6"
 django-tenants = "==3.2.1"
 gunicorn = "*"
 whitenoise = "*"
+dj-database-url = "*"
+python-decouple = "*"
 
 [dev-packages]
 
