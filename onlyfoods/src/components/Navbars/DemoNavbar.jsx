@@ -16,6 +16,7 @@ import {
 
 import auth from "components/auth/auth.js";
 
+import api from "../../api_route.js";
 
 import { connect } from "react-redux";
 
@@ -60,7 +61,7 @@ class Header extends React.Component {
     });
   }
   getBrand() {
-    let brandName = "SuperComidas";
+    let brandName = api.subdomain;
     if (this.props.routes !== undefined) {
       this.props.routes.map((prop, key) => {
         if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {

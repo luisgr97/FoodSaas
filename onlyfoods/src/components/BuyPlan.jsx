@@ -13,7 +13,9 @@ import {
     Col, Form, FormGroup, Label, Input, Button, Alert
 } from "reactstrap";
 
-import axios from "axios";
+// import axios from "axios";
+
+// import api from "../api_route.js";
 
 import counterpart from "counterpart";
 import * as Tr from "react-translate-component";
@@ -55,31 +57,30 @@ class BuyPlan extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        if (this.state.contract !== "") {
-            // console.log("dfd")
-            // this.setState({ contract: "" })
-            // window.open("https://energycorp.herokuapp.com/api/invoice/pdf/" + this.state.contract + "/");
-            axios.post("https://energycorp.herokuapp.com/api/invoice/by-contract/", { contractNumber: parseInt(this.state.contract) })
-                .then(res => {
-                    var { error, find } = res.data;
-                    if (error === true || find === false) {
-                        // MENSAJE DE ERROR POR TRANSLATE
-                        // console.log(message)
-                        this.setState({ error: true, errorMsg: counterpart.translate('getBill.error') });
-                        window.setTimeout(() => {
-                            this.setState({ error: false, errorMsg: "" });
-                        }, 2000);
-                    } else {
-                        this.setState({ bills: res.data.invoices })
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
+        alert("Esta es tu ruta: https://crepes.localhost.com/");
+        // if (this.state.contract !== "") {
+        //     axios.post("https://energycorp.herokuapp.com/api/invoice/by-contract/", { contractNumber: parseInt(this.state.contract) })
+        //         .then(res => {
+        //             var { error, find } = res.data;
+        //             if (error === true || find === false) {
+        //                 // MENSAJE DE ERROR POR TRANSLATE
+        //                 // console.log(message)
+        //                 this.setState({ error: true, errorMsg: counterpart.translate('getBill.error') });
+        //                 window.setTimeout(() => {
+        //                     this.setState({ error: false, errorMsg: "" });
+        //                 }, 2000);
+        //             } else {
+        //                 this.setState({ bills: res.data.invoices })
+        //             }
+        //         })
+        //         .catch(err => {
+        //             console.log(err);
+        //         })
+        // }
     }
 
     componentDidMount() {
+        console.log(window.location.hostname);
         this.setState({ plan: this.props.match.params.plan });
         window.scrollTo(0, 0);
     }
@@ -104,7 +105,8 @@ class BuyPlan extends React.Component {
                     <Card>
                         {alert}
                         <div>
-                            <Button block color="primary">
+                            <Button block
+                                color={this.state.plan === "basico" ? "primary" : this.state.plan === "normal" ? "success" : "danger"} >
                                 <h2>
                                     <span role="img" aria-label=".">👉</span>
                                      Plan {this.state.plan}

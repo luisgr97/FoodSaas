@@ -5,14 +5,13 @@ import React
 import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 // import ChatBot from "components/chatBot/ChatBot.jsx";
 
-
-// import { Link } from "react-router-dom";
-
 import counterpart from "counterpart";
 // import * as Tr from "react-translate-component";
 import spanish from "../langs/spanish.js";
 import english from "../langs/english.js";
 import portuguese from "../langs/portuguese.js";
+
+import api from "../api_route.js";
 
 // import bot_gif from "./bot_gif.gif";
 
@@ -29,7 +28,6 @@ import {
 counterpart.registerTranslations('en', english);
 counterpart.registerTranslations('es', spanish);
 counterpart.registerTranslations('po', portuguese);
-
 
 counterpart.setLocale('en');
 
@@ -91,167 +89,179 @@ class Start extends React.Component {
             <div>
                 <DemoNavbar {...this.props} />
                 <div className="contentStart">
-                    <center>
-                        {/* <NewComp {...this.props} /> */}
-                        {/* <Tr content="home.title" component="h1" /> */}
-                        <h1>
-                            ¡Tu restaurante facil y rapido!
-                        </h1>
-                        <img width="800" height="430" src="https://www.portugalresident.com/wp-content/uploads/2019/10/junk_food.jpg" alt="description"></img>
-                        <br></br>
-                        <br></br>
-                        <hr />
-                        <h3>
-                            Gestión de usuarios, Gestión de clientes y Gestión de productos
-                        </h3>
-                        <br />
-                        <img width="800" height="430" src="https://hospitalduran.com/wp-content/uploads/2019/05/creative-business-people-working-on-business-L2HKPFY-1024x682.jpg" alt="" />
-                        <hr />
-                        <h1>
-                            Nuestros servicios
-                        </h1>
-                        <br />
-                        <Container>
-                            <Table bordered>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <center>
-                                                {/* <Card>
-                                                    <CardBody>
-                                                        <CardTitle>
-                                                        </CardTitle>
-                                                    </CardBody>
-                                                </Card> */}
-                                                            Elige un plan y <br></br>
-                                                            empieza tu negocio
-                                            </center>
-                                        </th>
-                                        <th>
-                                            <center>
-                                                <Card>
-                                                    <CardBody>
-                                                        <CardTitle>
-                                                            Plan Basico
-                                                            <br />
-                                                            <b style={{ color: "gray" }}>$300.000 al mes</b>
-                                                            <br />
-                                                        </CardTitle>
-                                                    </CardBody>
-                                                </Card>
-                                            </center>
-                                        </th>
-                                        <th>
-                                            <center>
-                                                <Card>
-                                                    <CardBody>
-                                                        <CardTitle>
-                                                            Plan Normal
-                                                            <br />
-                                                            <b style={{ color: "gray" }}>$500.000 al mes</b>
-                                                            <br />
-                                                        </CardTitle>
-                                                    </CardBody>
-                                                </Card>
-                                            </center>
-                                        </th>
-                                        <th>
-                                            <center>
-                                                <Card>
-                                                    <CardBody>
-                                                        <CardTitle>
-                                                            Plan PREMIUM
-                                                            <br />
-                                                            <b style={{ color: "gray" }}>$700.000 al mes</b>
-                                                            <br />
-                                                        </CardTitle>
-                                                    </CardBody>
-                                                </Card>
-                                            </center>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Gestion de clientes</td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Gestion de productos</td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Gestion de pagos</td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Reportes graficos</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Reportes de ventas</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Actualizar datos de los menús de comidas desde un archivo en excel.</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Generar Mapas de ubicación de clientes</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Personalizacion</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>PWA</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ textAlign: "left" }}>Bot</td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">❌</span></td>
-                                        <td><span role="img" aria-label=".">✅</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span className="btn btn-success">
-                                                <Link to="/buy_plan/basico" style={{ "color": "white" }}>Comprar</Link>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="btn btn-success">
-                                                <Link to="/buy_plan/normal" style={{ "color": "white" }}>Comprar</Link>
-                                            </span>                                        </td>
-                                        <td>
-                                            <span className="btn btn-success">
-                                                <Link to="/buy_plan/premium" style={{ "color": "white" }}>Comprar</Link>
-                                            </span>                                        </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </Container>
-                    </center>
+                    {
+                        api.isLocalhost ? (
+                            <center>
+                                {/* <NewComp {...this.props} /> */}
+                                {/* <Tr content="home.title" component="h1" /> */}
+                                <h1>
+                                    ¡Tu restaurante facil y rapido!
+                            </h1>
+                                <img width="900" height="530" src="https://www.portugalresident.com/wp-content/uploads/2019/10/junk_food.jpg" alt="description"></img>
+                                <br></br>
+                                <br></br>
+                                <hr />
+                                <h3>
+                                    Gestión de usuarios, Gestión de clientes y Gestión de productos
+                            </h3>
+                                <br />
+                                <img width="900" height="530" src="https://hospitalduran.com/wp-content/uploads/2019/05/creative-business-people-working-on-business-L2HKPFY-1024x682.jpg" alt="" />
+                                <hr />
+                                <h1>
+                                    Nuestros servicios
+                            </h1>
+                                <br />
+                                <Container>
+                                    <Table bordered>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <center>
+                                                        {/* <Card>
+                                                        <CardBody>
+                                                            <CardTitle>
+                                                            </CardTitle>
+                                                        </CardBody>
+                                                    </Card> */}
+                                                                Elige un plan y <br></br>
+                                                                empieza tu negocio
+                                                </center>
+                                                </th>
+                                                <th>
+                                                    <center>
+                                                        <Card>
+                                                            <CardBody>
+                                                                <CardTitle>
+                                                                    Plan Basico
+                                                                <br />
+                                                                    <b style={{ color: "gray" }}>$300.000 al mes</b>
+                                                                    <br />
+                                                                </CardTitle>
+                                                            </CardBody>
+                                                        </Card>
+                                                    </center>
+                                                </th>
+                                                <th>
+                                                    <center>
+                                                        <Card>
+                                                            <CardBody>
+                                                                <CardTitle>
+                                                                    Plan Normal
+                                                                <br />
+                                                                    <b style={{ color: "gray" }}>$500.000 al mes</b>
+                                                                    <br />
+                                                                </CardTitle>
+                                                            </CardBody>
+                                                        </Card>
+                                                    </center>
+                                                </th>
+                                                <th>
+                                                    <center>
+                                                        <Card>
+                                                            <CardBody>
+                                                                <CardTitle>
+                                                                    Plan PREMIUM
+                                                                <br />
+                                                                    <b style={{ color: "gray" }}>$700.000 al mes</b>
+                                                                    <br />
+                                                                </CardTitle>
+                                                            </CardBody>
+                                                        </Card>
+                                                    </center>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Gestion de clientes</td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Gestion de productos</td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Gestion de pagos</td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Reportes graficos</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Reportes de ventas</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Actualizar datos de los menús de comidas desde un archivo en excel.</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Generar Mapas de ubicación de clientes</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Personalizacion</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>PWA</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ textAlign: "left" }}>Bot</td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">❌</span></td>
+                                                <td><span role="img" aria-label=".">✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <span className="btn btn-success">
+                                                        <Link to="/buy_plan/basico" style={{ "color": "white" }}>Comprar</Link>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span className="btn btn-success">
+                                                        <Link to="/buy_plan/normal" style={{ "color": "white" }}>Comprar</Link>
+                                                    </span>                                        </td>
+                                                <td>
+                                                    <span className="btn btn-success">
+                                                        <Link to="/buy_plan/premium" style={{ "color": "white" }}>Comprar</Link>
+                                                    </span>                                        </td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </Container>
+                            </center>
+                        ) : (
+                                <center>
+                                    <h1>
+                                        Bienvenido a {api.subdomain}
+                                    </h1>
+                                    <img width="900" height="530" src="https://crepesywaffles.com/sites/default/files/2020-05/03.png" alt="" />
+                                </center>
+                            )
+                    }
+
                 </div>
                 {/* {
                     this.state.visibleChat
