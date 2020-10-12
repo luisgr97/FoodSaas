@@ -1,7 +1,7 @@
 # Library seializer
 from rest_framework import serializers
 # Model of user
-from tenant.models import Domain
+from ..models import Domain
 
 """-------------------------------Domain Serializers------------------------------------------------"""
 
@@ -19,7 +19,7 @@ class DomainSerializer(serializers.ModelSerializer):
         domain = Domain.objects.create(
             domain=validated_data['domain'],
             is_primary=validated_data['is_primary'],
-            tenant_id=validated_data['tenant_id']
+            tenant_id=validated_data['tenant_id'],
         )
         # Guarda el usuario
         domain.save()

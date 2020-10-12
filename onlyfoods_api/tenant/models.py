@@ -3,10 +3,24 @@ from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
 
 
+class Plan(TenantMixin):
+    """Class Plan, represent a set of functionalities in the app"""
+
+    name = models.CharField(max_length=100)
+    created_on = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'plan'
+        verbose_name = 'plan'
+        verbose_name_plural = 'plans'
+
+
 class Client(TenantMixin):
     """Class Tenant, represent a scheme in the bd"""
 
     name = models.CharField(max_length=100)
+    plan = models.ForeignKey(Plan, related_name="plan", on_delete=models.PROTECT)
     paid_until = models.DateField()
     on_trial = models.BooleanField()
     created_on = models.DateField(auto_now_add=True)

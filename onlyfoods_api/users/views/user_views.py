@@ -10,8 +10,8 @@ from rest_framework.generics import (
     DestroyAPIView,  # delete one
 )
 # Serializer to the model User
-from .serializers import *
-from .models import *
+from ..serializers.user_serializer import *
+from ..models import CustomUser
 # to manage the response object
 from rest_framework.response import Response #realiza la respuesta Http
 from rest_framework import status # retorna el código 200, 300, 400, 500

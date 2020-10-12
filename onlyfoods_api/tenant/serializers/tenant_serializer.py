@@ -1,8 +1,8 @@
 # Library seializer
 from rest_framework import serializers
 # Model of user
-from tenant.models import Client
-
+from ..models import Client
+from datetime import datetime
 """-------------------------------Tenant Serializers------------------------------------------------"""
 
 class TenantSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class TenantSerializer(serializers.ModelSerializer):
             name=validated_data['name'],
             paid_until=validated_data['paid_until'],
             on_trial=validated_data['on_trial'],
-            created_on=validated_data['created_on'],
+            created_on=datetime.now(),
             is_active=validated_data['is_active']
             )
         # Guarda el usuario

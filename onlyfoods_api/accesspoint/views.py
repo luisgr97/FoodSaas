@@ -25,7 +25,7 @@ class Log_in(APIView):
                 'id',
                 'first_name',
                 'last_name',
-                'type_user_id',
+                'typeuser',
                 'profile_picture',
                 'password',
                 'last_login',

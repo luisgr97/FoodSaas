@@ -1,6 +1,8 @@
 from django.urls import path, re_path
 
-from users.views import *
+from .views.user_views import *
+from .views.typeuser_views import *
+
 
 urlpatterns = [
     # CRUD => Create, Read, Update, Delete
@@ -8,5 +10,12 @@ urlpatterns = [
     path('list', UserList.as_view()),#ok
     path('get/<pk>', UserUpdate.as_view()), #ok
     path('update/<pk>', UserDetail.as_view()),#ok
-    path('delete/v<pk>', UserDelete.as_view())#ok
+    path('delete/v<pk>', UserDelete.as_view()),#ok
+
+    # CRUD => Create, Read, Update, Delete
+    path('type/create', TypeUserCreate.as_view()),#ok
+    path('type/list', TypeUserList.as_view()),#ok
+    path('type/get/<pk>', TypeUserUpdate.as_view()), #ok
+    path('type/update/<pk>', TypeUserDetail.as_view()),#ok
+    path('type/delete/v<pk>', TypeUserDelete.as_view())#ok
 ]

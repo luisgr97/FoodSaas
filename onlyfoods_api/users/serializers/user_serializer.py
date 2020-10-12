@@ -3,7 +3,7 @@ from rest_framework import serializers
 # Library to hash to password of user
 from django.contrib.auth.hashers import make_password
 # Model of user
-from .models import CustomUser
+from ..models import CustomUser
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,6 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
             phone_number=validated_data['phone_number'],
             address=validated_data['address'],
             date_of_birth=validated_data['date_of_birth'],
+            typeuser= validated_data['typeuser'],
             password=make_password(validated_data.pop("password")),
             is_staff=validated_data['is_staff']
         )
@@ -58,7 +59,7 @@ class UserShowPublicDataSerializer(serializers.ModelSerializer):
         fields = ['id',
                   'first_name',
                   'last_name',
-                  'type_user_id',
+                  'typeuser',
                   'profile_picture',
                   'last_login',
                   'is_active']

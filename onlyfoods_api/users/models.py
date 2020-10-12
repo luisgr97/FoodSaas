@@ -35,6 +35,27 @@ phone_regex = RegexValidator(
     regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
 
+class TypeCustomUser(models.Model):
+    """Type Custom user model that supports using email instead of username"""
+
+    typeuser = models.CharField(max_length=255,blank=True, null=True)
+    create_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    """Fields to determinate if a user es active o inactive"""
+    is_active = models.BooleanField(default=True)
+    
+
+    """Class meta to define atributes tables"""
+    class Meta:
+        db_table = 'typecustomuser'
+        verbose_name = 'typecustomuser'
+        verbose_name_plural = 'typecustomusers'
+
+    """functions by identify the model"""
+    def __str__(self):
+        return str(self.id)
+
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     """Custom user model that supports using email instead of username"""
 
@@ -59,6 +80,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default=datetime.date.today, blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
+    typeuser = models.ForeignKey(TypeCustomUser,on_delete=models.PROTECT, related_name="typeuser")
+
     """Fields to determinate if a user es active o inactive"""
     is_active = models.BooleanField(default=True)
     """Fields by select a superuser and staffuser"""
@@ -80,3 +103,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return str(self.document_id)
+
+
+

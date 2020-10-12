@@ -9,8 +9,8 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,  # update one
     DestroyAPIView,  # delete one
 )
-# Serializer to the model Tenant
-from ..serializers.tenant_serializer import *
+# Serializer to the model Plan
+from ..serializers.plan_serializer import *
 from ..models import Client
 
 # to manage the response object
@@ -18,31 +18,31 @@ from rest_framework.response import Response  # realiza la respuesta Http
 from rest_framework import status  # retorna el código 200, 300, 400, 500
 
 
-class TenantCreate(CreateAPIView):
-    """View to Create Tenants"""
+class PlanCreate(CreateAPIView):
+    """View to Create Plans"""
     queryset = Client.objects.all()
-    serializer_class = TenantSerializer
+    serializer_class = PlanSerializer
 
 
-class TenantDetail(RetrieveAPIView):
-    """View to Retrive a Tenants"""
+class PlanDetail(RetrieveAPIView):
+    """View to Retrive a Plans"""
     queryset = Client.objects.all()
-    serializer_class = TenantShowPublicDataSerializer
+    serializer_class = PlanSerializer
 
 
-class TenantList(ListAPIView):
-    """View to List a Tenants"""
+class PlanList(ListAPIView):
+    """View to List a Plans"""
     queryset = Client.objects.all()
-    serializer_class = TenantShowPublicDataSerializer
+    serializer_class = PlanSerializer
 
 
-class TenantUpdate(RetrieveUpdateAPIView):
-    """View to Update a Tenants"""
+class PlanUpdate(RetrieveUpdateAPIView):
+    """View to Update a Plans"""
     queryset = Client.objects.all()
-    serializer_class = TenantSerializer
+    serializer_class = PlanSerializer
 
 
-class TenantDelete(DestroyAPIView):
-    """View to Delete a Tenants"""
+class PlanDelete(DestroyAPIView):
+    """View to Delete a Plans"""
     queryset = Client.objects.all()
-    serializer_class = TenantSerializer
+    serializer_class = PlanSerializer

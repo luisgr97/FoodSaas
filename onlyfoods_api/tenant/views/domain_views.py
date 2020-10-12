@@ -10,8 +10,8 @@ from rest_framework.generics import (
     DestroyAPIView,  # delete one
 )
 # Serializer to the model Domain
-from tenant.serializers.domain_serializer import *
-from tenant.models import Domain
+from ..serializers.domain_serializer import *
+from ..models import Domain
 
 # to manage the response object
 from rest_framework.response import Response  # realiza la respuesta Http
