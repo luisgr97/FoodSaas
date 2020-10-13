@@ -11,6 +11,7 @@ function Sectionfive() {
           <div class="col-d-6 col-lg-5 offset-lg-1">
             <div class="view">
               <img
+                alt="fd"
                 class="img-fluid mx-auto"
                 src="https://urbancomunicacion.com/wp-content/uploads/2018/05/Curiosa-historia-del-logo-de-Dominos-Pizza.png"
               />
@@ -21,7 +22,7 @@ function Sectionfive() {
               <img
                 class="img-fluid mx-auto"
                 src="https://i.pinimg.com/originals/52/31/8a/52318aaae6dfa67be0995a25f69014b3.jpg"
-                alt="Sample image"
+                alt="Sampleimage"
               />
             </div>
           </div>

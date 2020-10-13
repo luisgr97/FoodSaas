@@ -23,11 +23,11 @@ function Sectiontwo() {
               <img
                 className="img-fluid"
                 src="https://img-sharesprites.flaticon.com/pack/0/235/235167-reports-and-analytics.jpg"
-                alt="Sample image"
+                alt="Sampleimage"
               />
-              <a>
+              {/* <a> */}
                 <div className="mask rgba-white-slight"></div>
-              </a>
+              {/* </a> */}
             </div>
             <h4 className="font-weight-bold mb-3">
               <strong>Reportes</strong>
@@ -51,11 +51,11 @@ function Sectiontwo() {
               <img
                 className="img-fluid"
                 src="https://image.flaticon.com/icons/png/512/395/395529.png"
-                alt="Sample image"
+                alt="Sampleimage"
               />
-              <a>
+              {/* <a> */}
                 <div className="mask rgba-white-slight"></div>
-              </a>
+              {/* </a> */}
             </div>
             <h4 className="font-weight-bold mb-3">
               <strong>Menú Digital</strong>
@@ -79,11 +79,11 @@ function Sectiontwo() {
               <img
                 className="img-fluid"
                 src="https://icons-for-free.com/iconfiles/png/512/ecommerce+marketing+online+shopping+sale+shopping+icon-1320165954013206270.png"
-                alt="Sample image"
+                alt="Sampleimage"
               />
-              <a>
+              {/* <a> */}
                 <div className="mask rgba-white-slight"></div>
-              </a>
+              {/* </a> */}
             </div>
             <h4 className="font-weight-bold mb-3">
               <strong>Comercio en Linea</strong>
