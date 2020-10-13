@@ -50,6 +50,6 @@ class TenantShowPublicDataSerializer(serializers.ModelSerializer):
                   'paid_until',
                   'on_trial',
                   'created_on',
-                  'last_login',
+                  #'last_login',
                   'is_active']
         depth = 1
