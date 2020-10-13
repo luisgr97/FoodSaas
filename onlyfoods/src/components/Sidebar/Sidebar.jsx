@@ -21,7 +21,7 @@ import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-
+import api from "../../api_route.js";
 import logo from "logo.png";
 
 var ps;
@@ -69,7 +69,7 @@ class Sidebar extends React.Component {
             href="/"
             className="simple-text logo-normal"
           >
-            SuperComidas
+            {api.subdomain}
           </a>
         </div>
         <div className="sidebar-wrapper" ref={this.sidebar}>
