@@ -64,34 +64,38 @@ STATICFILES_DIRS = [
 """---------------------------Zona para configuraciones de las apps del proyecto.----------------------"""
 
 # Aplicaciones nativas de django.
-DJANGO_APPS = (
+DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+]
 
-# Aplicaciones instaladas en el pipenv -> pipfile.
-THIRD_PARTY_APPS = (
-    'rest_framework',
-    'rest_framework.authtoken',
-    'corsheaders',
-)
-
-# Aplicaciones compartidas por los tenants
-SHARED_APPS = (
-    # aplicaciones locales.
-    'django_tenants',  # aplicacion que administra los tenants.
-    'tenant',
+# Aplicaciones locales.
+LOCAL_APPS = [
     'frontend',
     'users',
     'accesspoint',
-) + DJANGO_APPS + THIRD_PARTY_APPS
+]
+
+# Aplicaciones instaladas en el pipenv -> pipfile.
+THIRD_PARTY_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
+]
+
+# Aplicaciones compartidas por los tenants
+SHARED_APPS = [
+    # aplicaciones locales.
+    'django_tenants',  # aplicacion que administra los tenants.
+    'tenant',
+]
 
 # Especifica que aplicaciones tienen los tenenat
-TENANT_APPS = DJANGO_APPS + THIRD_PARTY_APPS
+TENANT_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # Configura el global de las aplicaciones instaladas.
 INSTALLED_APPS = list(SHARED_APPS) + \
