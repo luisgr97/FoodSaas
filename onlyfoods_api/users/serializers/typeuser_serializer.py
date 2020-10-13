@@ -10,13 +10,11 @@ class TypeUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeCustomUser
         fields = '__all__'
-        depth = 2
 
     def create(self, validated_data):
         """Create a new user object"""
         typeuser = TypeCustomUser.objects.create(
             typeusers=validated_data['typeusers'],
-            create_at=validated_data['create_at'],
             is_active=validated_data['is_active'],
         )
         # Guarda el usuario

@@ -21,7 +21,7 @@ from rest_framework import status # retorna el código 200, 300, 400, 500
 class UserCreate(CreateAPIView):
     """View to Create Users"""
     queryset = CustomUser.objects.all()
-    serializer_class = CreateUserSerializer
+    serializer_class = UserSerializer
     
 
 class UserDetail(RetrieveAPIView):

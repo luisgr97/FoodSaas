@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.authtoken.models import Token
+from users.serializers.user_serializer import UserSerializer
 
 
 """para responder los usuarios en el login"""
@@ -17,37 +18,29 @@ class Log_in(APIView):
 
     def post(self, request):
         """recive a document_id and password and return the basic info and the token access"""
-        document_id = request.data.get('document_id', None)
-        password = request.data.get('passwor', None)
+        email = request.data.get('email', None)
+        password = request.data.get('password', None)
         """si el se reciben bien los parametros busca el usuario"""
-        if document_id and password:
-            user_querysets = CustomUser.objects.get(document_id__iexact=document_id).values(
-                'id',
-                'first_name',
-                'last_name',
-                'typeuser',
-                'profile_picture',
-                'password',
-                'last_login',
-                'is_active'
-            )
+        print(email, password)
+        if email and password:
+            user_querysets = CustomUser.objects.get(email__iexact=email)
             """Si lo encuentra y esta activo elimna los campos sencibiles y crea el token"""
-            if (user_querysets.exists() and user_querysets[0]['is_active']):
-                user = user_querysets[0]
+            if (user_querysets.is_active):
+                user = user_querysets
                 """valida que la contraseña propocionada sea correcta"""
-                if(check_password(password, user['password'])):
-                    user.pop('password')  # quitamos la contraseña.
+                if(check_password(password, user.password)):
                     """Si la contraseña es correcta trae el usuario"""
                     user_token = CustomUser.objects.get(
-                        document_id__iexact=document_id)
+                        email__iexact=email)
                     """creamos el token de acceso ..."""
                     token, created = Token.objects.get_or_create(
-                        user=user_token[0])
+                        user=user_token)
                     """revisa el perfil del usuario"""
+                    objserializer = UserSerializer(user_token).data
                     return Response({"message": "Login exitoso",
                                      "data":  {
                                          "token": token.key,
-                                         "user_data": {"user": user_token[0]}
+                                         "user_data": objserializer
                                      }})
                 else:
                     message = "Contraseña incorrecta"

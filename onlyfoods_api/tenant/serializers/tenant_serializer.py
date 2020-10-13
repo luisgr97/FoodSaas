@@ -6,29 +6,6 @@ from datetime import datetime
 """-------------------------------Tenant Serializers------------------------------------------------"""
 
 
-class CreateTenantSerializer(serializers.ModelSerializer):
-    """Serializer class to object tenant"""
-
-    class Meta:
-        model = Client
-        fields = ['schema_name', 'plan', 'name', 'paid_until',
-                  'on_trial', 'created_on', 'is_active']
-
-    def create(self, validated_data):
-        """Create a new user object"""
-        tenant = Client.objects.create(
-            schema_name=validated_data['schema_name'],
-            name=validated_data['name'],
-            paid_until=validated_data['paid_until'],
-            on_trial=validated_data['on_trial'],
-            plan=validated_data['plan'],
-            created_on=datetime.now(),
-            is_active=validated_data['is_active']
-        )
-        # Guarda el usuario
-        tenant.save()
-        return tenant
-
 
 class TenantSerializer(serializers.ModelSerializer):
     """Serializer class to object tenant"""
@@ -36,7 +13,6 @@ class TenantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
-        depth = 1
 
     def create(self, validated_data):
         """Create a new user object"""

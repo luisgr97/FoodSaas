@@ -21,7 +21,7 @@ from rest_framework import status  # retorna el código 200, 300, 400, 500
 class TenantCreate(CreateAPIView):
     """View to Create Tenants"""
     queryset = Client.objects.all()
-    serializer_class = CreateTenantSerializer
+    serializer_class = TenantSerializer
 
 
 class TenantDetail(RetrieveAPIView):
