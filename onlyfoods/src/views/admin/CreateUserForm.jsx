@@ -26,7 +26,7 @@ class CreateUserForm extends React.Component {
             id_user: '',
             name: '',
             email: '',
-            password: 'loquendo',
+            password: '@secret@',
             phone: '',
             address: '',
             neighborhood: '',

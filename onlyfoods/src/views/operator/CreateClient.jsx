@@ -1,5 +1,5 @@
 import React from "react";
-import CreateClientForm from "views/operator/CreateClientForm.jsx";
+// import CreateClientForm from "views/operator/CreateClientForm.jsx";
 import axios from "axios";
 
 import counterpart from "counterpart";
@@ -81,7 +81,10 @@ class CreateClient extends React.Component {
                     <Col md="6" >
                         <Card>
                             <CardBody>
-                                <CreateClientForm submitAction={this.createEle} editMode={false}/>
+                                <h1>
+                                    Menus
+                                </h1>
+                                {/* <CreateClientForm submitAction={this.createEle} editMode={false}/> */}
                             </CardBody>
                         </Card>
                     </Col>
