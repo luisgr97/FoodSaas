@@ -38,7 +38,7 @@ phone_regex = RegexValidator(
 class TypeCustomUser(models.Model):
     """Type Custom user model that supports using email instead of username"""
 
-    typeuser = models.CharField(max_length=255,blank=True, null=True)
+    typeusers = models.CharField(max_length=255,blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     """Fields to determinate if a user es active o inactive"""
     is_active = models.BooleanField(default=True)

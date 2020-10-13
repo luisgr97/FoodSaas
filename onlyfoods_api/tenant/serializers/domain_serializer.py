@@ -11,15 +11,14 @@ class DomainSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Domain
-        fields = '__all__'
-        depth = 1
+        fields = ['domain', 'is_primary', 'tenant']
 
     def create(self, validated_data):
         """Create a new user object"""
         domain = Domain.objects.create(
             domain=validated_data['domain'],
             is_primary=validated_data['is_primary'],
-            tenant_id=validated_data['tenant_id'],
+            tenant=validated_data['tenant'],
         )
         # Guarda el usuario
         domain.save()
@@ -44,6 +43,6 @@ class DomainShowPublicDataSerializer(serializers.ModelSerializer):
         model = Domain
         fields = [
             'domain',
-            'tenant_id'
+            'tenant'
         ]
         depth = 1

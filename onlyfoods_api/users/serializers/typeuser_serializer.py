@@ -15,7 +15,7 @@ class TypeUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new user object"""
         typeuser = TypeCustomUser.objects.create(
-            typeuser=validated_data['typeuser'],
+            typeusers=validated_data['typeusers'],
             create_at=validated_data['create_at'],
             is_active=validated_data['is_active'],
         )

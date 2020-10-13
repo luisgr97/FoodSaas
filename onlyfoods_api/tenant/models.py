@@ -3,7 +3,7 @@ from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
 
 
-class Plan(TenantMixin):
+class Plan(models.Model):
     """Class Plan, represent a set of functionalities in the app"""
 
     name = models.CharField(max_length=100)
@@ -37,10 +37,12 @@ class Client(TenantMixin):
 
 class Domain(DomainMixin):
     """Registra los dominios de la app"""
-
     class Meta:
         db_table = 'domain'
         verbose_name = 'domain'
         verbose_name_plural = 'domains'
+    pass
+
+   
 
     

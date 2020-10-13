@@ -131,10 +131,10 @@ TEMPLATES = [
 """---------------------------Zona para configuraciones del DRF.----------------------"""
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    'DEFAULT_PERMISSION_CLASSES': [
+    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     #     'rest_framework.permissions.IsAuthenticated',
-    # ],
+     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  # <-- And here
     ],
@@ -158,10 +158,10 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'onlyfoods',
-        'USER': 'postgres',
-        'PASSWORD': 'docker$23compose',
-        'HOST': 'localhost',
+        'NAME': 'dfe21j6pq9qump',
+        'USER': 'sglraooeiociea',
+        'PASSWORD': '2974617d1adde174bd7d8f2da4dbfd7cb3e345b03cd2d1cb4e394a08dcb53b54',
+        'HOST': 'ec2-54-243-67-199.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
