@@ -4,8 +4,8 @@ import logo from "logo.png";
 
 import auth from "components/auth/auth.js";
 import ReCAPTCHA from "react-google-recaptcha";
-// import axios from 'axios';
-
+import axios from 'axios';
+import api from "../../api_route.js";
 import { Link } from "react-router-dom";
 
 import {
@@ -22,7 +22,7 @@ class Login extends React.Component {
         super(props);
         this.state = {
             disabledLoginBtn: true,
-            username: '',
+            email: '',
             password: '',
             doAnime: false,
             errorLogin: false,
@@ -47,73 +47,69 @@ class Login extends React.Component {
 
         const delay = 800;
 
-        // let data = { id_user: this.state.username, password: this.state.password };
+        let data = { email: this.state.email, password: this.state.password };
 
         // let given; 
-        let obj;
+        // let obj;
 
         // dummy
-        obj = {
-            "token": "asdasdsa",
-            "user_id": "awqweqweqw",
-            "user_type": 1,
-            "user_type_name": "admin"
-        };
+        // obj = {
+        //     "token": "asdasdsa",
+        //     "user_id": "awqweqweqw",
+        //     "user_type": 1,
+        //     "user_type_name": "admin"
+        // };
 
-        auth.login(obj, rou => {
-            this.setState({ doAnime: true });
-            window.setTimeout(() => {
-                this.props.history.push("/" + rou)
-            }, delay);
-        });
+        // auth.login(obj, rou => {
+        //     this.setState({ doAnime: true });
+        //     window.setTimeout(() => {
+        //         this.props.history.push("/" + rou)
+        //     }, delay);
+        // });
 
-        /*axios.post("https://energycorp.herokuapp.com/api/user/login/", data)
+        axios.post(api.route + "/api/log/in", data)
             .then(res => {
-                given = res.data;
-                if (given.code === 200) {
+                let given = res.data.data;
+                // console.log(given);
 
-                    let user_type_name;
+                let user_type_name;
 
-                    switch (given.data.user_type) {
-                        case 1:
-                            user_type_name = "admin";
-                            break;
-                        case 2:
-                            user_type_name = "manager"
-                            break;
-                        case 3:
-                            user_type_name = "operator";
-                            break
-                        default:
-                            break;
-                    }
-
-                    obj = {
-                        "token": given.token,
-                        "user_id": given.data.user__id_user,
-                        "user_type": given.data.user_type,
-                        "user_type_name": user_type_name,
-                        "id": given.data.id
-                    };
-
-                    auth.login(obj, rou => {
-                        this.setState({ doAnime: true });
-                        window.setTimeout(() => {
-                            this.props.history.push("/" + rou)
-                        }, delay);
-                    });
-
-                } else {
-                    document.getElementById("loginForm").reset();
-                    this.setState({ errorLogin: true, messageError: given.message });
-                    window.setTimeout(() => {
-                        this.setState({ errorLogin: false });
-                    }, 2000);
+                switch (given.user_data.typeuser) {
+                    case 1:
+                        user_type_name = "admin"; //admin
+                        break;
+                    case 2:
+                        user_type_name = "operator" //digitador
+                        break;
+                    case 3:
+                        user_type_name = "manager"; //cliente
+                        break
+                    default:
+                        break;
                 }
+
+                let obj = {
+                    "token": given.token,
+                    "user_id": given.user_data.document_id,
+                    "user_type": given.user_data.typeuser,
+                    "user_type_name": user_type_name,
+                    "id": given.user_data.id
+                };
+
+                auth.login(obj, rou => {
+                    this.setState({ doAnime: true });
+                    window.setTimeout(() => {
+                        this.props.history.push("/" + rou)
+                    }, delay);
+                });
             })
             .catch(err => {
                 console.log(err);
-            })*/
+                this.setState({ errorLogin: true, messageError: "Error en los parametros" });
+                window.setTimeout(() => {
+                    this.setState({ errorLogin: false });
+                }, 2000);
+            })
     }
 
     render() {
@@ -139,7 +135,7 @@ class Login extends React.Component {
                             <Form onSubmit={this.signin} id="loginForm">
                                 <FormGroup>
                                     <Label for="exampleEmail">email</Label>
-                                    <Input onChange={this.handleInput} type="email" name="username" id="exampleEmail" placeholder="Login" requiered />
+                                    <Input onChange={this.handleInput} type="email" name="email" id="exampleEmail" placeholder="Login" requiered />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="examplePassword">Password</Label>

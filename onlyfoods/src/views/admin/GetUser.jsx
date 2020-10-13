@@ -137,13 +137,13 @@ class GetUser extends React.Component {
                             <CardBody>
                                 <Col>
                                     <Row>
-                                        <Col>
+                                        {/* <Col>
                                             <select onChange={this.handleInput} className="form-control" name="selected">
                                                 <Tr content="getUser.all" component="option" />
                                                 <Tr content="createUser.operator" component="option" />
                                                 <Tr content="createUser.manager" component="option" />
                                             </select>
-                                        </Col>
+                                        </Col> */}
                                         <Col>
                                             <FormGroup>
                                                 <Input onChange={this.handleInput} name="search" placeholder={placeholderSearch}></Input>
