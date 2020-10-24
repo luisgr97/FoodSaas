@@ -1,6 +1,7 @@
 """---------------------------Zona para imports and from.----------------------"""
 from pathlib import Path
 import os
+from decouple import config, Csv
 
 
 """---------------------------Zona para configuraciones base del proyecto.----------------------"""
@@ -9,16 +10,13 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@kehe!87ui+hh2k(bp_prh^r65$8406@+as&_*n27n-_-o!&v8'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 # Host del proyecto
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    '127.0.0.1',
-    '.localhost']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 STATICFILES_FINDERS = [
@@ -92,6 +90,7 @@ SHARED_APPS = [
     # aplicaciones locales.
     'django_tenants',  # aplicacion que administra los tenants.
     'tenant',
+    'smtp'
 ]
 
 # Especifica que aplicaciones tienen los tenenat
@@ -162,11 +161,11 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'dfe21j6pq9qump',
-        'USER': 'sglraooeiociea',
-        'PASSWORD': '2974617d1adde174bd7d8f2da4dbfd7cb3e345b03cd2d1cb4e394a08dcb53b54',
-        'HOST': 'ec2-54-243-67-199.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -210,3 +209,12 @@ USE_TZ = True
 
 TENANT_MODEL = "tenant.Client"  # app.Model
 TENANT_DOMAIN_MODEL = "tenant.Domain"  # app.Model
+
+
+"""--------------------------Zona para configurar el envio de correos------------------------------------------------"""
+
+EMAIL_HOST=config('EMAIL_HOST') 
+EMAIL_PORT=config('EMAIL_PORT')
+EMAIL_HOST_USER=config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=config('EMAIL_USE_TLS')

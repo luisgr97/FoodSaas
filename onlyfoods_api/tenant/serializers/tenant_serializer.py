@@ -48,8 +48,8 @@ class TenantShowPublicDataSerializer(serializers.ModelSerializer):
         model = Client
         fields = ['name',
                   'paid_until',
+                  'plan',
                   'on_trial',
                   'created_on',
-                  'last_login',
                   'is_active']
         depth = 1

@@ -15,6 +15,7 @@ from ..models import CustomUser
 # to manage the response object
 from rest_framework.response import Response #realiza la respuesta Http
 from rest_framework import status # retorna el código 200, 300, 400, 500
+from smtp.smtp import Smtp
 
 
 
@@ -28,6 +29,7 @@ class UserDetail(RetrieveAPIView):
     """View to Retrive a Users"""
     queryset = CustomUser.objects.all()
     serializer_class = UserShowPublicDataSerializer
+    Smtp.new_tenant_confirm('luchogr23@gmail.com', 'mensaje de prueba')
 
 
 class UserList(ListAPIView):
