@@ -30,11 +30,11 @@ function Sectionone() {
             <img
               className="img-fluid mx-auto"
               src="https://mdbootstrap.com/img/illustrations/app-user-colour.svg"
-              alt="Sample image"
+              alt="Sampleimage"
             />
-            <a>
+            {/* <a> */}
               <div className="mask rgba-white-slight"></div>
-            </a>
+            {/* </a> */}
           </div>
         </div>
       </div>
