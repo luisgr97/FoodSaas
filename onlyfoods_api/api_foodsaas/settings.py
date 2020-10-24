@@ -76,6 +76,13 @@ LOCAL_APPS = [
     'frontend',
     'users',
     'accesspoint',
+    'franchise',
+    'menu',
+    'products',
+    'ingredients',
+    'purcharsers',
+    'payments',
+    'bills'
 ]
 
 # Aplicaciones instaladas en el pipenv -> pipfile.
