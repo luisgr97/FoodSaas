@@ -4,8 +4,8 @@ from django.db import models  # Para la Bd
 from bills.models import Bill
 
 
-class Purcharse(models.Model):
-    """Purcharse model"""
+class Payment(models.Model):
+    """Payment model"""
 
     # foregin keys
     pay = models.ForeignKey(
@@ -13,6 +13,7 @@ class Purcharse(models.Model):
 
     # data fields
     pay_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    value = models.FloatField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:

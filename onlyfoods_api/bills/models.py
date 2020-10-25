@@ -12,6 +12,8 @@ class Bill(models.Model):
                               null=True, default=0.0)
     iva = models.FloatField(blank=True,
                               null=True, default=0.0)
+    total = models.FloatField(blank=True,
+                              null=True, default=0.0)
     
     # foregin keys
     client = models.ForeignKey(

@@ -8,5 +8,5 @@ urlpatterns = [
     path('list', MenuList.as_view()),#ok
     path('get/<pk>', MenuUpdate.as_view()), #ok
     path('update/<pk>', MenuDetail.as_view()),#ok
-    path('delete/v<pk>', MenuDelete.as_view()),#ok
+    path('delete/<pk>', MenuDelete.as_view()),#ok
 ]
