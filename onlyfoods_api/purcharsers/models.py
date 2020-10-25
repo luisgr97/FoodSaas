@@ -24,6 +24,5 @@ class Purcharse(models.Model):
         verbose_name_plural = 'purcharses'
 
     """functions by identify the model"""
-
     def __str__(self):
         return str(self.id)
