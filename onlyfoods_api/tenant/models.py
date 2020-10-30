@@ -6,7 +6,7 @@ from django_tenants.models import TenantMixin, DomainMixin
 class Plan(models.Model):
     """Class Plan, represent a set of functionalities in the app"""
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     created_on = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
