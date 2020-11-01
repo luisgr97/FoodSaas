@@ -47,3 +47,4 @@ class FranchiseShowPublicDataSerializer(serializers.ModelSerializer):
                   'email',
                   'logo',
                   'phone']
+

@@ -6,6 +6,7 @@ import Sectiontwo from "components/Landingpage/Sectiontwo";
 import Sectionthree from "components/Landingpage/Sectionthree";
 import Sectionfour from "components/Landingpage/Sectionfour";
 import Sectionfive from "components/Landingpage/Sectionfive";
+import MarketServices from "./MarketService";
 
 
 // import ChatBot from "components/chatBot/ChatBot.jsx";
@@ -114,15 +115,7 @@ class Start extends React.Component {
               <Sectionfive/>
             </center>
           ) : (
-            <center>
-              <h1>Bienvenido a {api.subdomain}</h1>
-              <img
-                width="900"
-                height="530"
-                src="https://crepesywaffles.com/sites/default/files/2020-05/03.png"
-                alt=""
-              />
-            </center>
+              <MarketServices subdomain={api.subdomain}/>
           )}
         </div>
         {/* {

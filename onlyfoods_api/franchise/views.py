@@ -12,6 +12,8 @@ from rest_framework.generics import (
 # Serializer to the model Franchise
 from .serializers import *
 from .models import Franchise
+from rest_framework.views import APIView
+
 
 # to manage the response object
 from rest_framework.response import Response #realiza la respuesta Http
@@ -47,5 +49,3 @@ class FranchiseDelete(DestroyAPIView):
     """View to Delete a Franchises"""
     queryset = Franchise.objects.all()
     serializer_class = FranchiseSerializer
-
-

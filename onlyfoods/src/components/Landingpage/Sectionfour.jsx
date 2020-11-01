@@ -8,71 +8,74 @@ function Sectionfour() {
           FAQ
         </h6>
         <p class="lead text-muted mx-auto mt-4 pt-2 mb-5 text-center">
-          Got a question? We've got answers. If you have some other questions,
-          see our support center.
+          ¿Tienes alguna pregunta? Tenemos respuestas. Si tiene otras preguntas,
+          consulte nuestro centro de soporte.
         </p>
 
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-4">
             <h5 class="font-weight-normal mb-3">
-              Is this a secure site for purchases?
+              ¿Es este un sitio seguro para realizar compras?{" "}
             </h5>
             <p class="text-muted">
-              Absolutely! We work with top payment companies which guarantees
-              your safety and security. All billing information is stored on our
-              payment processing partner which has the most stringent level of
-              certification available in the payments industry.
+              ¡Absolutamente! Trabajamos con las principales empresas de pago
+              que garantizan su seguridad y protección. Toda la información de
+              facturación se almacena en nuestro socio de procesamiento de pagos
+              que tiene el nivel más estricto de certificación disponible en la
+              industria de pagos.
             </p>
           </div>
 
           <div class="col-md-6 col-lg-4 mb-4">
             <h5 class="font-weight-normal mb-3">
-              Can I cancel my subscription?
+              ¿Puedo cancelar mi suscripción?{" "}
             </h5>
             <p class="text-muted">
-              You can cancel your subscription anytime in your account. Once the
-              subscription is cancelled, you will not be charged next month. You
-              will continue to have access to your account until your current
-              subscription expires.
+              Puede cancelar su suscripción en cualquier momento en su cuenta.
+              Una vez el la suscripción está cancelada, no se le cobrará el
+              próximo mes. usted seguirá teniendo acceso a su cuenta hasta su
+              actual caduca la suscripción.
             </p>
           </div>
 
           <div class="col-md-6 col-lg-4 mb-4">
             <h5 class="font-weight-normal mb-3">
-              How long are your contracts?
+              ¿Cuánto duran sus contratos?{" "}
             </h5>
             <p class="text-muted">
-              Currently, we only offer monthly subscription. You can upgrade or
-              cancel your monthly account at any time with no further
-              obligation.
+              Actualmente, solo ofrecemos suscripción mensual. Puede actualizar
+              o cancele su cuenta mensual en cualquier momento sin más
+              obligación.
             </p>
           </div>
 
           <div class="col-md-6 col-lg-4 mb-4">
             <h5 class="font-weight-normal mb-3">
-              Can I update my card details?
+              ¿Puedo actualizar los datos de mi tarjeta?
             </h5>
             <p class="text-muted">
-              Yes. Go to the billing section of your dashboard and update your
-              payment information.
-            </p>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-            <h5 class="font-weight-normal mb-3">Can I request refund?</h5>
-            <p class="text-muted">
-              Unfortunately, not. We do not issue full or partial refunds for
-              any reason.
+              Si. Vaya a la sección de facturación de su panel y actualice su
+              Información del pago.{" "}
             </p>
           </div>
 
           <div class="col-md-6 col-lg-4 mb-4">
             <h5 class="font-weight-normal mb-3">
-              Can I try your service for free?
+              ¿Puedo solicitar un reembolso?
             </h5>
             <p class="text-muted">
-              Of course! We’re happy to offer a free plan to anyone who wants to
-              try our service.
+              Lamentablemente no. No emitimos reembolsos totales o parciales por
+              cualquier razón.
+            </p>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+            <h5 class="font-weight-normal mb-3">
+              ¿Puedo probar tu servicio gratis?{" "}
+            </h5>
+            <p class="text-muted">
+              ¡Por supuesto! Nos complace ofrecer un plan gratuito a cualquiera
+              que desee prueba nuestro servicio.
             </p>
           </div>
         </div>
