@@ -22,7 +22,6 @@ function Payment(props) {
                         src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
                         class="img-fluid z-depth-1-half"
                         alt="Second sample image"
-
                       />
                     </div>
 
