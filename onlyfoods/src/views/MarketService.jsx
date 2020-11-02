@@ -26,17 +26,17 @@ function MarketServices(props) {
         />
         <div className="col-12">
           <img
-            src={props.subdomain == "kokoriko" ? kokoriko : dominos}
+            src={props.subdomain === "kokoriko" ? kokoriko : dominos}
             style={{
               height: "300px",
               width: "400px",
               margin: "auto",
             }}
-            alt="sample photo"
+            alt="sample_photo"
           />
         </div>
       </div>
-      {active_step == 0 ? <Shop/> : active_step == 1 ? <EditShop/>: active_step == 2 ? <Cofirmation/> : <Payment/>}
+      {active_step === 0 ? <Shop/> : active_step === 1 ? <EditShop/>: active_step === 2 ? <Cofirmation/> : <Payment/>}
     </div>
 
   );

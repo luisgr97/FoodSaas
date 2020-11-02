@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, ButtonGroup, Input } from "reactstrap";
+import React from "react";
+// import { Button, ButtonGroup, Input } from "reactstrap";
 
 function Payment(props) {
-  const [rSelected, setRSelected] = useState(null);
+  // const [rSelected, setRSelected] = useState(null);
 
   return (
     <div className="container mt-5">

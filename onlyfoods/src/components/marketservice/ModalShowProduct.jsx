@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 const ModalCarShowProduct = (props) => {
-  const { buttonLabel, className } = props;
+  const { className } = props;
 
   const [modal, setModal] = useState(false);
 

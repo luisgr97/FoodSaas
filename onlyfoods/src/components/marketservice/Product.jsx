@@ -25,7 +25,7 @@ function Product(props) {
           <img
             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(38).jpg"
             className="card-img-top"
-            alt="sample photo"
+            alt="sample_photo"
             style={{
               borderRadius: "10px",
             }}
