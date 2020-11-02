@@ -3,6 +3,7 @@ import CreateDigitator from "views/admin/CreateDigitator.jsx";
 import GetClients from "views/operator/GetClients.jsx";
 import GetUser from "views/admin/GetUser.jsx";
 import TransformersMap from "views/admin/TransformersMap.jsx";
+import Menus from "views/admin/Menus.jsx";
 // import CreateReports from "views/manager/CreateReports.jsx";
 
 var adminRoutes = [
@@ -39,6 +40,13 @@ var adminRoutes = [
     name: "Map",
     icon: "nc-icon nc-pin-3",
     component: TransformersMap,
+    layout: "/admin"
+  },
+  {
+    path: "/menus",
+    name: "Menus",
+    icon: "nc-icon nc-pin-3",
+    component: Menus,
     layout: "/admin"
   }
 ];
