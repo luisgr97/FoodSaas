@@ -14,7 +14,7 @@ class MenuSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new Menu object"""
         menu = Menu.objects.create(
-            menu_name=validated_data['business_name'],
+            menu_name=validated_data['menu_name'],
             banner=validated_data['banner'],
             description=validated_data['description'],
             franchise=validated_data['franchise']
@@ -44,4 +44,4 @@ class MenuShowPublicDataSerializer(serializers.ModelSerializer):
                   'banner',
                   'description',
                   'franchise']
-        depyh = 2
+        depth = 2

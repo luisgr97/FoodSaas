@@ -14,7 +14,7 @@ class ProductSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new Product object"""
         product = Product.objects.create(
-            product_name=validated_data['business_name'],
+            product_name=validated_data['product_name'],
             image=validated_data['image'],
             description=validated_data['description'],
             price=validated_data['price'],

@@ -46,5 +46,6 @@ class FranchiseShowPublicDataSerializer(serializers.ModelSerializer):
         fields = ['business_name',
                   'email',
                   'logo',
-                  'phone']
+                  'phone',
+                  'address']
 
