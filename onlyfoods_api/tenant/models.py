@@ -34,6 +34,9 @@ class Client(TenantMixin):
         verbose_name = 'client'
         verbose_name_plural = 'clients'
 
+    def __str__(self):
+        return str(self.name)
+
 
 class Domain(DomainMixin):
     """Registra los dominios de la app"""

@@ -14,7 +14,7 @@ class IngredientSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new Ingredient object"""
         ingredient = Ingredient.objects.create(
-            ingredient_name=validated_data['business_name'],
+            ingredient_name=validated_data['ingredient_name'],
             image=validated_data['image'],
             description=validated_data['description'],
             price=validated_data['price'],
@@ -46,4 +46,4 @@ class IngredientShowPublicDataSerializer(serializers.ModelSerializer):
                   'description',
                   'price',
                   'product']
-        depyh = 1
+        depth = 1

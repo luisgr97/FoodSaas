@@ -8,14 +8,14 @@ urlpatterns = [
     # CRUD => Create, Read, Update, Delete
     path('create', UserCreate.as_view()), #ok
     path('list', UserList.as_view()),#ok
-    path('get/<pk>', UserUpdate.as_view()), #ok
+    path('get/<pk>', UserDetail.as_view()), #ok
     path('update/<pk>', UserUpdate.as_view()),#ok
     path('delete/<pk>', UserDelete.as_view()),#ok
 
     # CRUD => Create, Read, Update, Delete
     path('type/create', TypeUserCreate.as_view()),#ok
     path('type/list', TypeUserList.as_view()),#ok
-    path('type/get/<pk>', TypeUserUpdate.as_view()), #ok
+    path('type/get/<pk>', TypeUserDetail.as_view()), #ok
     path('type/update/<pk>', TypeUserUpdate.as_view()),#ok
     path('type/delete/<pk>', TypeUserDelete.as_view())#ok
 ]
