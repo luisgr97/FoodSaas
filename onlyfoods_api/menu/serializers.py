@@ -24,10 +24,7 @@ class MenuSerializer(serializers.ModelSerializer):
         return Menu
 
     def update(self, instance, validated_data):
-        """Update a Menu objTypeError: int() argument must be a string, a bytes-like object or a number, not 'DeferredAttribute'
-￼
-Enviar mensaje a #general
-ect"""
+        """Update a Menu"""
         menu = super().update(instance, validated_data)
         menu.save()
         return menu

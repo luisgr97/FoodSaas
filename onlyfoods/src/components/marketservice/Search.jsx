@@ -1,7 +1,6 @@
 import React from "react";
 import { InputGroup, Button, Input } from "reactstrap";
 
-
 function Search(props) {
   return (
     <div className="row text-center">
@@ -24,6 +23,7 @@ function Search(props) {
               margin: "1rem",
             }}
             placeholder="Que se te antoja? "
+            onChange={props.onChange}
           />
         </InputGroup>
         <Button
@@ -34,6 +34,7 @@ function Search(props) {
             border: "0px white",
             margin: "auto",
           }}
+          onClick={props.onClick}
         >
           Buscar!
         </Button>

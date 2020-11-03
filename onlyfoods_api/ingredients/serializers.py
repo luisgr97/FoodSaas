@@ -46,4 +46,3 @@ class IngredientShowPublicDataSerializer(serializers.ModelSerializer):
                   'description',
                   'price',
                   'product']
-        depth = 1
