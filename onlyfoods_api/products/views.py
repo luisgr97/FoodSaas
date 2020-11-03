@@ -48,3 +48,11 @@ class ProductDelete(DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+class ProductListByMenu(ListAPIView):
+    """View to List Products that belongs to a Menu"""
+    queryset = Product.objects.all()
+    serializer_class = ProductShowPublicDataSerializer
+    def get_queryset(self):
+        products = Product.objects.filter(menu=self.kwargs['menuId'])
+        return products
+    
