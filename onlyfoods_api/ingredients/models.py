@@ -21,7 +21,7 @@ class Ingredient(models.Model):
                               null=True, default=0.0)
     # foregin keys
     product = models.ForeignKey(
-        Product, related_name="ingredients", on_delete=models.PROTECT)
+        Product, related_name="ingredients", on_delete=models.CASCADE)
 
     # data fields
     create_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)

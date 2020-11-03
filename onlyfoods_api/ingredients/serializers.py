@@ -41,7 +41,7 @@ class IngredientShowPublicDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ingredient
-        fields = ['ingredient_name',
+        fields = ['id','ingredient_name',
                   'image',
                   'description',
                   'price',
