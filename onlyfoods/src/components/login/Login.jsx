@@ -55,9 +55,6 @@ class Login extends React.Component {
             schema: api.subdomain
         };
 
-        console.log(data);
-        console.log(api.route + "/api/logs/in");
-        console.log(api.subdomain);
         // let given; 
         // let obj;
 

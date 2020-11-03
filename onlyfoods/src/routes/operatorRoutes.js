@@ -1,16 +1,41 @@
-import CreateClient from "views/operator/CreateClient.jsx";
+// import CreateClient from "views/operator/CreateClient.jsx";
 // import GetClients from "views/operator/GetClients.jsx";
 // import Payments from "views/operator/Payment.jsx";
 // import ViewPayments from "views/operator/ViewPayments.jsx";
+import Menus from "views/operator/Menus.jsx";
+import Productos from "views/operator/Productos.jsx";
+import Ingredientes from "views/operator/Ingredientes.jsx";
+
 
 var operatorRoutes = [
   {
-    path: "/createClient",
+    path: "/menus",
     name: "Gestion de Menus",
     icon: "nc-icon nc-diamond",
-    component: CreateClient,
+    component: Menus,
     layout: "/operator"
   },
+  {
+    path: "/productos",
+    name: "Gestion de Productos",
+    icon: "nc-icon nc-diamond",
+    component: Productos,
+    layout: "/operator"
+  },
+  {
+    path: "/ingredientes",
+    name: "Ges. Ingredientes",
+    icon: "nc-icon nc-diamond",
+    component: Ingredientes,
+    layout: "/operator"
+  },
+  // {
+  //   path: "/createClient",
+  //   name: "Gestion de Menus",
+  //   icon: "nc-icon nc-diamond",
+  //   component: CreateClient,
+  //   layout: "/operator"
+  // },
   // {
   //   path: "/getClients",
   //   name: "getClients",

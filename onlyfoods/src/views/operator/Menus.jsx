@@ -6,7 +6,9 @@ import counterpart from "counterpart";
 import spanish from "../../langs/spanish.js";
 import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
-// import axios from "axios";
+import axios from "axios";
+
+import MenusForm from "./MenusForm.jsx";
 
 import api from "../../api_route.js";
 
@@ -24,15 +26,16 @@ counterpart.registerTranslations('en', english);
 counterpart.registerTranslations('es', spanish);
 counterpart.registerTranslations('po', portuguese);
 
-class GetUser extends React.Component {
+class Menus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { //PHONE IS NUMBER
+        this.state = {
+            newmenu_name: "",
+            newmenu_description: "",
             menus: [],
+            currentMenu: {},
             search: '',
             modal: false,
-            selected: 'All',
-            user: {},
         }
     }
 
@@ -44,7 +47,7 @@ class GetUser extends React.Component {
 
     openToggle = obj => {
         this.setState({
-            user: obj,
+            currentMenu: obj,
             modal: true
         });
     }
@@ -53,6 +56,39 @@ class GetUser extends React.Component {
         this.setState({
             modal: false
         });
+    }
+
+    getMenus = async () => {
+        const res = await fetch(api.route + "/api/menus/list");
+        const data = await res.json();
+        // console.log(data);
+        this.setState({ menus: data });
+    }
+
+
+    createMenu = e => {
+
+        let data = {
+            menu_name: this.state.newmenu_name,
+            description: this.state.newmenu_description,
+            banner: "",
+            is_active: true,
+            // franchise: api.subdomain
+        }
+
+        console.log(api.route + "/api/menus/create", data);
+        axios.post(api.route + "/api/menus/create", data)
+            .then(res => {
+                this.setState({
+                    newmenu_name: "",
+                    newmenu_description: "",
+                });
+                this.getMenus();
+                alert("Menu Creado con exito!");
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -67,32 +103,37 @@ class GetUser extends React.Component {
                                 <Col>
                                     <Row>
                                         <Col>
+                                            <h3>Crear Menu</h3>
                                             <FormGroup>
-                                                <Input onChange={this.handleInput} name="search"></Input>
+                                                <Input onChange={this.handleInput} name="newmenu_name" placeholder="Nombre del Menu"></Input>
+                                                <Input onChange={this.handleInput} name="newmenu_description" placeholder="Descripcion del Menu"></Input>
                                             </FormGroup>
+                                            <Button color="warning" onClick={this.createMenu}>Crear Menu</Button>
                                         </Col>
                                     </Row>
                                     <br></br>
+                                    <h3>Consultar Menus</h3>
                                     <Table responsive>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
                                                 <th>Descripcion</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {
                                                 this.state.menus.map((m, k) =>
                                                     <tr key={k}>
-                                                        <th scope="row">{k + 1}</th>
-                                                        <th>{m.menu_name}</th>
-                                                        <th>{m.description}</th>
-                                                        <th>
-                                                            <Button color="success" onClick={() => this.openToggle(m)}>
-                                                                Ver Productos
+                                                        <td>{k + 1}</td>
+                                                        <td style={{ "textAlign": "left" }}>{m.menu_name}</td>
+                                                        <td style={{ "textAlign": "left" }}>{m.description}</td>
+                                                        <td style={{ "textAlign": "left" }}>
+                                                            <Button color="warning" onClick={() => this.openToggle(m)}>
+                                                                Detalles
                                                             </Button>
-                                                        </th>
+                                                        </td>
                                                     </tr>
                                                 )
                                             }
@@ -104,13 +145,12 @@ class GetUser extends React.Component {
                     </Col>
 
                     <div>
-                        <Modal md="7" isOpen={this.state.modal} toggle={this.closeToggle} className="danger">
+                        <Modal md="12" size="lg" isOpen={this.state.modal} toggle={this.closeToggle} className="danger">
                             <ModalHeader toggle={this.closeToggle}>
-                                Productos
+                                Editar Menu
                             </ModalHeader>
                             <ModalBody>
-                                {/* <CreateUserForm submitAction={this.editUser} user={this.state.user} editMode={true} /> */}
-
+                                <MenusForm menu={this.state.currentMenu} />
                             </ModalBody>
                         </Modal>
                     </div>
@@ -121,11 +161,7 @@ class GetUser extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await fetch(api.route + "/api/menus/list");
-        const data = await res.json();
-
-        console.log(data)
-        this.setState({ menus: data });
+        this.getMenus();
     }
 
 };
@@ -137,5 +173,5 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(GetUser);
+export default connect(mapStateToProps, mapDispatchToProps)(Menus);
 
