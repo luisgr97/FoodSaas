@@ -17,9 +17,7 @@ class Menu(models.Model):
     description = models.CharField(max_length=2000,
                                    blank=True,
                                    null=True)
-    # foregin keys
-    franchise = models.ForeignKey(
-        Franchise, related_name="menus", on_delete=models.PROTECT)
+
 
     # data fields
     create_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)

@@ -114,8 +114,8 @@ function Shop(props) {
               </div>
             </>
           ) : (
-            products.map((element) => (
-              <Product
+            products.map((element) => 
+              (<Product
                 product_name={element.product_name}
                 image={element.image}
                 description={element.description}

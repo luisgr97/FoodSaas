@@ -2,8 +2,7 @@ import React from "react";
 import ModalShowProduct from "./ModalShowProduct";
 
 function Product(props) {
-
-  const { product_name, image, price } = props;
+  const { product_name, image,description, price } = props;
 
   return (
     <div
@@ -59,7 +58,12 @@ function Product(props) {
             </strong>
           </span>
           <span className="float-right">
-            <ModalShowProduct data={props} />
+            <ModalShowProduct
+              product_name={product_name}
+              image={image}
+              description={description}
+              price={price}
+            />
           </span>
         </div>
       </div>

@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const ModalCarShowProduct = (props) => {
-  const { product_name, image, description, price } = props;
-  console.log("recibo:", props)
+  const { product_name, image,description, price } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -81,7 +80,7 @@ const ModalCarShowProduct = (props) => {
                         aria-controls="collapseOne1"
                       >
                         <h5 class="mb-0">
-                          {description}
+                          Descripción
                           <i class="fas fa-angle-down rotate-icon"></i>
                         </h5>
                       </a>
@@ -123,7 +122,10 @@ const ModalCarShowProduct = (props) => {
                       data-parent="#accordionEx"
                     >
                       <div class="card-body">
+                        <div className="card">
                         Anim pariatur cliche reprehenderit, enim eiusmod high
+                      
+                        </div>
                         life accusamus terry richardson ad squid. 3 wolf moon
                         officia aute, non cupidatat skateboard dolor brunch.
                         Food truck quinoa nesciunt laborum eiusmod. Brunch 3

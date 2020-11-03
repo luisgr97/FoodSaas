@@ -16,8 +16,7 @@ class MenuSerializer(serializers.ModelSerializer):
         menu = Menu.objects.create(
             menu_name=validated_data['menu_name'],
             banner=validated_data['banner'],
-            description=validated_data['description'],
-            franchise=validated_data['franchise']
+            description=validated_data['description']
         )
         # Guarda el usuario
         menu.save()
@@ -42,6 +41,6 @@ class MenuShowPublicDataSerializer(serializers.ModelSerializer):
         model = Menu
         fields = ['id','menu_name',
                   'banner',
-                  'description',
-                  'franchise']
+                  'description'
+                  ]
         depth = 2
