@@ -203,7 +203,7 @@ class Productos extends React.Component {
                     <div>
                         <Modal md="12" size="lg" isOpen={this.state.modal} toggle={this.closeToggle} className="danger">
                             <ModalHeader toggle={this.closeToggle}>
-                                Ingredientes
+                                Ediatar producto
                             </ModalHeader>
                             <ModalBody>
                                 <ProductsForm size="lg" product={this.state.currentProduct} reloadProductos={this.reloadProductos} />

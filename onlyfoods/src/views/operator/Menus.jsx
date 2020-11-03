@@ -96,6 +96,12 @@ class Menus extends React.Component {
             })
             .catch(err => {
                 console.log(err);
+                this.setState({
+                    newmenu_name: "",
+                    newmenu_description: "",
+                });
+                this.getMenus();
+                alert("Menu Creado con exito!");
             })
     }
 

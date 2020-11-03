@@ -128,7 +128,7 @@ const ModalCarShowProduct = (props) => {
                       data-parent="#accordionEx"
                     >
                       <div className="card-body">
-                        {description != "" ? description : "Sin descripción"}
+                        {description !== "" ? description : "Sin descripción"}
                       </div>
                     </div>
                   </div>

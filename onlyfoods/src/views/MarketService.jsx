@@ -21,7 +21,7 @@ function MarketServices(props) {
   //Propiedades.
   const { subdomain } = props;
   //Estado.
-  const [active_step, setActiveStep] = useState(0);
+  const [active_step] = useState(0);
   const [products, setProducts] = useState(null);
   //libreria para peticiones http
   var shop = [];

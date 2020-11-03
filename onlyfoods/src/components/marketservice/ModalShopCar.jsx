@@ -94,8 +94,8 @@ const ModalCarShop = (props) => {
                         <tr>
                           <th scope="row">
                             <img
+                              alt="imadfdsge"
                               src={element.image}
-                              alt="image"
                               class="img-fluid z-depth-0"
                             />
                           </th>
