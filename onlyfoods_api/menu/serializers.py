@@ -16,14 +16,15 @@ class MenuSerializer(serializers.ModelSerializer):
         menu = Menu.objects.create(
             menu_name=validated_data['menu_name'],
             banner=validated_data['banner'],
-            description=validated_data['description']
+            description=validated_data['description'],
+            is_active=validated_data['is_active']
         )
         # Guarda el usuario
         menu.save()
         return Menu
 
     def update(self, instance, validated_data):
-        """Update a Menu object"""
+        """Update a Menu"""
         menu = super().update(instance, validated_data)
         menu.save()
         return menu
@@ -39,7 +40,7 @@ class MenuShowPublicDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ['id','menu_name',
+        fields = ['id', 'menu_name',
                   'banner',
                   'description'
                   ]

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const ModalCarShowProduct = (props) => {
-  const { product_name, image,description, price } = props;
+  const { product_name, image, description, price, ingredients } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -93,7 +93,9 @@ const ModalCarShowProduct = (props) => {
                       aria-labelledby="headingOne1"
                       data-parent="#accordionEx"
                     >
-                      <div class="card-body">{description}</div>
+                      <div class="card-body">
+                        {description != "" ? description : "Sin descripción"}
+                      </div>
                     </div>
                   </div>
 
@@ -122,15 +124,18 @@ const ModalCarShowProduct = (props) => {
                       data-parent="#accordionEx"
                     >
                       <div class="card-body">
-                        <div className="card">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high
-                      
-                        </div>
-                        life accusamus terry richardson ad squid. 3 wolf moon
-                        officia aute, non cupidatat skateboard dolor brunch.
-                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-                        wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et.
+                        {ingredients[0] != null ? (
+                          ingredients.map((element) => (
+                            <span role="img" aria-label=".">
+                              ✅{" "}
+                              {element.ingredient_name + " $" + element.price}
+                            </span>
+                          ))
+                        ) : (
+                          <span role="img" aria-label=".">
+                            ✅ sin ingredientes
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>

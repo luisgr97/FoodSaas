@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 //componentes.
 import Product from "../../components/marketservice/Product";
@@ -12,10 +12,27 @@ import { Spinner } from "reactstrap";
 function Shop(props) {
   //Propiedades.
   const { products } = props;
+  const { query, setQuery } = useState("");
+  const { list, setList } = useState(products);
+
+  const handleOnChange = (e) => {
+    // var q = e.target.value();
+    // setQuery(query);
+    // console.log(q)
+  };
+
+  const handleSearch = (e) => {
+    // if (query === "") {
+    //   setList(products);
+    // } else {
+    //  var newlist = list.filter((element) => element.product_name.includes(query));
+    //   setList(newlist);
+    // }
+  };
 
   return (
     <Fragment>
-      <Search />
+      <Search onChange={handleSearch()} onClick={handleOnChange()} />
       <div className="row">
         <Modal />
         <div className="col-12">
@@ -68,58 +85,54 @@ function Shop(props) {
                   type="grow"
                   color="info"
                   size="lg"
-                  style={{ margin: "auto",
-                  width: '1rem', height: '1rem' }}
+                  style={{ margin: "auto", width: "1rem", height: "1rem" }}
                 />{" "}
                 <Spinner
                   type="grow"
                   color="info"
                   size="lg"
-                  style={{ margin: "auto",
-                  width: '2rem', height: '2rem' }}
+                  style={{ margin: "auto", width: "2rem", height: "2rem" }}
                 />{" "}
                 <Spinner
                   type="grow"
                   color="info"
                   size="lg"
-                  style={{ margin: "auto",
-                  width: '3rem', height: '3rem' }}/>
-                  <Spinner
-                  type="grow"
-                  color="info"
-                  size="lg"
-                  style={{ margin: "auto",
-                  width: '4rem', height: '4rem' }}/>
-                  <Spinner
-                  type="grow"
-                  color="info"
-                  size="lg"
-                  style={{ margin: "auto",
-                  width: '5rem', height: '5rem' }}
+                  style={{ margin: "auto", width: "3rem", height: "3rem" }}
                 />
                 <Spinner
                   type="grow"
                   color="info"
                   size="lg"
-                  style={{ margin: "auto",
-                  width: '6rem', height: '6rem' }}
+                  style={{ margin: "auto", width: "4rem", height: "4rem" }}
                 />
                 <Spinner
                   type="grow"
                   color="info"
                   size="lg"
-                  style={{ margin: "auto",
-                  width: '7rem', height: '7rem' }}
+                  style={{ margin: "auto", width: "5rem", height: "5rem" }}
+                />
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto", width: "6rem", height: "6rem" }}
+                />
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto", width: "7rem", height: "7rem" }}
                 />
               </div>
             </>
           ) : (
-            products.map((element) => 
-              (<Product
+            list.map((element) => (
+              <Product
                 product_name={element.product_name}
                 image={element.image}
                 description={element.description}
                 price={element.price}
+                ingredients={element.ingredients}
               />
             ))
           )}

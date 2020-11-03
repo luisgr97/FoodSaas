@@ -50,4 +50,4 @@ class ProductShowPublicDataSerializer(serializers.ModelSerializer):
                   'price',
                   'menu',
                   'ingredients']
-        depyh = 2
+        depyh = 1
