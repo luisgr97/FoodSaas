@@ -2,6 +2,7 @@
 from rest_framework import serializers
 # Model of Product
 from .models import Product 
+from ingredients.serializers import IngredientShowPublicDataSerializer
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -39,11 +40,14 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductShowPublicDataSerializer(serializers.ModelSerializer):
     """Serializer class to object Product, expose the none sensible attributes"""
 
+    ingredients = IngredientShowPublicDataSerializer(read_only=True, many=True)
+
     class Meta:
         model = Product
         fields = ['id','product_name',
                   'image',
                   'description',
                   'price',
-                  'menu']
+                  'menu',
+                  'ingredients']
         depyh = 2
