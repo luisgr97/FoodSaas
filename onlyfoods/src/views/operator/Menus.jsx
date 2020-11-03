@@ -14,6 +14,8 @@ import api from "../../api_route.js";
 
 import { connect } from "react-redux";
 
+import ReactLoading from 'react-loading';
+
 import {
     Card,
     CardBody,
@@ -36,6 +38,7 @@ class Menus extends React.Component {
             currentMenu: {},
             search: '',
             modal: false,
+            loading: true
         }
     }
 
@@ -62,9 +65,13 @@ class Menus extends React.Component {
         const res = await fetch(api.route + "/api/menus/list");
         const data = await res.json();
         // console.log(data);
-        this.setState({ menus: data });
+        this.setState({ menus: data, loading: false });
     }
 
+    reloadMenus = () => {
+        this.setState({ loading: true });
+        this.getMenus();
+    }
 
     createMenu = e => {
 
@@ -76,7 +83,8 @@ class Menus extends React.Component {
             // franchise: api.subdomain
         }
 
-        console.log(api.route + "/api/menus/create", data);
+        // console.log(api.route + "/api/menus/create", data);
+        this.setState({ loading: true });
         axios.post(api.route + "/api/menus/create", data)
             .then(res => {
                 this.setState({
@@ -105,40 +113,48 @@ class Menus extends React.Component {
                                         <Col>
                                             <h3>Crear Menu</h3>
                                             <FormGroup>
-                                                <Input onChange={this.handleInput} name="newmenu_name" placeholder="Nombre del Menu"></Input>
-                                                <Input onChange={this.handleInput} name="newmenu_description" placeholder="Descripcion del Menu"></Input>
+                                                <Input onChange={this.handleInput} name="newmenu_name" placeholder="Nombre del Menu" value={this.state.newmenu_name}></Input>
+                                                <Input onChange={this.handleInput} name="newmenu_description" placeholder="Descripcion del Menu" value={this.state.description}></Input>
                                             </FormGroup>
                                             <Button color="warning" onClick={this.createMenu}>Crear Menu</Button>
                                         </Col>
                                     </Row>
                                     <br></br>
                                     <h3>Consultar Menus</h3>
-                                    <Table responsive>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nombre</th>
-                                                <th>Descripcion</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                this.state.menus.map((m, k) =>
-                                                    <tr key={k}>
-                                                        <td>{k + 1}</td>
-                                                        <td style={{ "textAlign": "left" }}>{m.menu_name}</td>
-                                                        <td style={{ "textAlign": "left" }}>{m.description}</td>
-                                                        <td style={{ "textAlign": "left" }}>
-                                                            <Button color="warning" onClick={() => this.openToggle(m)}>
-                                                                Detalles
-                                                            </Button>
-                                                        </td>
+                                    {
+                                        this.state.loading
+                                            ?
+                                            <center>
+                                                <ReactLoading type="spin" color="#ffc107"></ReactLoading>
+                                            </center>
+                                            :
+                                            <Table responsive>
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nombre</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Acciones</th>
                                                     </tr>
-                                                )
-                                            }
-                                        </tbody>
-                                    </Table>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        this.state.menus.map((m, k) =>
+                                                            <tr key={k}>
+                                                                <td>{k + 1}</td>
+                                                                <td style={{ "textAlign": "left" }}>{m.menu_name}</td>
+                                                                <td style={{ "textAlign": "left" }}>{m.description}</td>
+                                                                <td style={{ "textAlign": "left" }}>
+                                                                    <Button color="warning" onClick={() => this.openToggle(m)}>
+                                                                        Detalles
+                                                            </Button>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    }
+                                                </tbody>
+                                            </Table>
+                                    }
                                 </Col>
                             </CardBody>
                         </Card>
@@ -150,7 +166,7 @@ class Menus extends React.Component {
                                 Editar Menu
                             </ModalHeader>
                             <ModalBody>
-                                <MenusForm menu={this.state.currentMenu} />
+                                <MenusForm menu={this.state.currentMenu} reloadMenus={this.reloadMenus} />
                             </ModalBody>
                         </Modal>
                     </div>

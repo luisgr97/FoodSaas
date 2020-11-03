@@ -8,7 +8,7 @@ import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
 import axios from "axios";
 
-import ProductsForm from "./ProductsForm.jsx";
+import IngredientsForm from "./IngredientsForm.jsx";
 
 import api from "../../api_route.js";
 
@@ -22,6 +22,8 @@ import {
     Modal, ModalHeader, ModalBody
 } from "reactstrap";
 
+import ReactLoading from 'react-loading';
+
 counterpart.registerTranslations('en', english);
 counterpart.registerTranslations('es', spanish);
 counterpart.registerTranslations('po', portuguese);
@@ -30,16 +32,18 @@ class Ingredientes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newproduct_name: "",
-            newproduct_description: "",
-            newproduct_price: "",
-            newproduct_image: "",
+            newingredient_name: "",
+            newingredient_description: "",
+            newingredient_price: "",
+            newingredient_image: "",
             ingredientes: [],
-            currentProduct: {},
-            menus: [],
-            selected_menu: "1",
+            productos: [],
+            currentIngredient: {},
+            selected_product: "1",
             search: '',
             modal: false,
+            loading: true,
+            selectLoading: true,
         }
     }
 
@@ -51,7 +55,7 @@ class Ingredientes extends React.Component {
 
     openToggle = obj => {
         this.setState({
-            currentProduct: obj,
+            currentIngredient: obj,
             modal: true
         });
     }
@@ -65,19 +69,22 @@ class Ingredientes extends React.Component {
     createProduct = e => {
 
         let data = {
-            product_name: this.state.newproduct_name,
-            description: this.state.newproduct_description,
-            image: this.state.newproduct_image,
-            price: parseInt(this.state.newproduct_price),
-            menu: this.state.selected_menu
+            ingredient_name: this.state.newingredient_name,
+            description: this.state.newingredient_description,
+            image: this.state.newingredient_image,
+            price: parseInt(this.state.newingredient_price),
+            product: this.state.selected_product,
         }
 
-        axios.post(api.route + "/api/products/create", data)
+        this.setState({ loading: true });
+
+        axios.post(api.route + "/api/ingredients/create", data)
             .then(res => {
                 this.setState({
-                    newproduct_name: "",
-                    newproduct_description: "",
-                    newproduct_price: "",
+                    newingredient_name: "",
+                    newingredient_description: "",
+                    newingredient_price: "",
+                    newingredient_image: "",
                 });
                 this.getingredientes();
                 alert("ingrediente Creado con exito!");
@@ -87,19 +94,25 @@ class Ingredientes extends React.Component {
             })
     }
 
-    getMenus = async () => {
-        const res = await fetch(api.route + "/api/menus/list");
-        const data = await res.json();
-        // console.log(data);
-        this.setState({ menus: data });
-    }
-
     getingredientes = async () => {
         const res = await fetch(api.route + "/api/ingredients/list");
         const data = await res.json();
         // console.log(data);
-        this.setState({ ingredientes: data });
+        this.setState({ ingredientes: data, loading: false });
     }
+
+    getProductos = async () => {
+        const res = await fetch(api.route + "/api/products/list");
+        const data = await res.json();
+        // console.log(data);
+        this.setState({ productos: data, loading: false, selectLoading: false });
+    }
+
+    reloadIngredientes = () => {
+        this.setState({ loading: true });
+        this.getingredientes();
+    }
+
 
     render() {
 
@@ -115,47 +128,75 @@ class Ingredientes extends React.Component {
                                         <Col>
                                             <h3>Crear ingredientes</h3>
                                             <FormGroup>
-                                                <Input onChange={this.handleInput} name="newproduct_name" placeholder="Crear ingrediente"></Input>
-                                                <Input onChange={this.handleInput} name="newproduct_description" placeholder="Descripcion del ingrediente"></Input>
-                                                <Input onChange={this.handleInput} name="newproduct_price" placeholder="Precio del ingrediente"></Input>
-                                                <Input onChange={this.handleInput} name="newproduct_image" placeholder="Imagen del ingrediente"></Input>
-                                                Selecciona tu menu: &nbsp;&nbsp;
-                                                {/* <select onChange={this.handleInput} name="selected_menu">
-                                                    {
-                                                        this.state.menus.map((ing, i) => (
-                                                            <option value={ing.id} key={i}>{ing.ingredient_name}</option>
-                                                        ))
-                                                    }
-                                                </select> */}
+                                                <Row>
+                                                    <Col>
+                                                        <Input onChange={this.handleInput} name="newingredient_name" placeholder="Nombre ingrediente"></Input>
+                                                    </Col>
+                                                    <Col>
+                                                        Selecciona tu Producto: &nbsp;&nbsp;
+                                                        {
+                                                            this.state.selectLoading ?
+                                                                <ReactLoading type="bars" color="#ffc107" width="25px" height="25px"></ReactLoading>
+                                                                :
+                                                                <select onChange={this.handleInput} name="selected_product">
+                                                                    {
+                                                                        this.state.productos.map((p, i) => (
+                                                                            <option value={p.id} key={i}>{p.product_name}</option>
+                                                                        ))
+                                                                    }
+                                                                </select>
+                                                        }
+
+                                                    </Col>
+                                                </Row>
+                                                <Input onChange={this.handleInput} name="newingredient_description" placeholder="Descripcion del ingrediente"></Input>
+                                                <Input onChange={this.handleInput} name="newingredient_price" placeholder="Precio del ingrediente"></Input>
+                                                <Input onChange={this.handleInput} name="newingredient_image" placeholder="Imagen del ingrediente"></Input>
+
                                             </FormGroup>
                                             <Button color="warning" onClick={this.createProduct}>Crear ingrediente</Button>
                                         </Col>
                                     </Row>
                                     <br></br>
-                                    <Table responsive>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Imagen</th>
-                                                <th>Nombre</th>
-                                                <th>Descripcion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                this.state.ingredientes.map((ing, k) =>
-                                                    <tr key={k}>
-                                                        <td>{k + 1}</td>
-                                                        <td>
-                                                            <img src={ing.image} alt="abc" width="70px" height="65px" />
-                                                        </td>
-                                                        <td style={{ "textAlign": "left" }}>{ing.ingredient_name}</td>
-                                                        <td style={{ "textAlign": "left" }}>{ing.description}</td>
+                                    <h3>Consultar Ingredientes</h3>
+                                    {
+                                        this.state.loading
+                                            ?
+                                            <center>
+                                                <ReactLoading type="spin" color="#ffc107"></ReactLoading>
+                                            </center>
+                                            :
+                                            <Table responsive>
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Imagen</th>
+                                                        <th>Nombre</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Detalles</th>
                                                     </tr>
-                                                )
-                                            }
-                                        </tbody>
-                                    </Table>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        this.state.ingredientes.map((ing, k) =>
+                                                            <tr key={k}>
+                                                                <td>{k + 1}</td>
+                                                                <td>
+                                                                    <img src={ing.image} alt="abc" width="70px" height="65px" />
+                                                                </td>
+                                                                <td style={{ "textAlign": "left" }}>{ing.ingredient_name}</td>
+                                                                <td style={{ "textAlign": "left" }}>{ing.description}</td>
+                                                                <td style={{ "textAlign": "left" }}>
+                                                                    <Button color="warning" onClick={() => this.openToggle(ing)}>
+                                                                        Detalles
+                                                                    </Button>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    }
+                                                </tbody>
+                                            </Table>
+                                    }
                                 </Col>
                             </CardBody>
                         </Card>
@@ -167,7 +208,7 @@ class Ingredientes extends React.Component {
                                 Ingredientes
                             </ModalHeader>
                             <ModalBody>
-                                <ProductsForm size="lg" product={this.state.currentProduct} />
+                                <IngredientsForm size="lg" ingredient={this.state.currentIngredient} reloadIngredientes={this.reloadIngredientes} />
                             </ModalBody>
                         </Modal>
                     </div>
@@ -179,7 +220,7 @@ class Ingredientes extends React.Component {
 
     async componentDidMount() {
         this.getingredientes();
-        this.getMenus();
+        this.getProductos();
     }
 
 };
