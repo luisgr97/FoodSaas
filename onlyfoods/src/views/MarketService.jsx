@@ -23,6 +23,12 @@ function MarketServices(props) {
   //Estado.
   const [active_step, setActiveStep] = useState(0);
   const [products, setProducts] = useState(null);
+  //libreria para peticiones http
+  var shop = [];
+  localStorage.setItem("Car-shop", JSON.stringify(shop));
+
+
+
 
   //instancia mentodos.
   const getData = async () => {
@@ -32,10 +38,9 @@ function MarketServices(props) {
       )
         .then((res) => {
           if (res.status === 200) {
-            console.log("Datos cargados:", res.data);
             setProducts(res.data);
           } else {
-            console.log("Datos no cargados");
+            console.log("code: "+res.status+", message: "+res.data);
           }
         })
         .catch((err) => {
@@ -46,7 +51,6 @@ function MarketServices(props) {
   //invoca el metodo.
   getData();
   //renderiza el componente.
-
 
   return (
     <div className="container">

@@ -5,15 +5,14 @@ import Product from "../../components/marketservice/Product";
 import Search from "../../components/marketservice/Search";
 import Modal from "../../components/marketservice/ModalShopCar";
 import { Spinner } from "reactstrap";
-//import { map } from "leaflet";
 
-//libreria para peticiones http
+
 
 function Shop(props) {
   //Propiedades.
   const { products } = props;
-  const { query, setQuery } = useState("");
-  const { list, setList } = useState(products);
+  //const { query, setQuery } = useState("");
+  //const { list, setList } = useState(products);
 
   const handleOnChange = (e) => {
     // var q = e.target.value();
@@ -126,7 +125,7 @@ function Shop(props) {
               </div>
             </>
           ) : (
-            list.map((element) => (
+            products.map((element) => (
               <Product
                 product_name={element.product_name}
                 image={element.image}
