@@ -40,7 +40,7 @@ class MenuShowPublicDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ['menu_name',
+        fields = ['id','menu_name',
                   'banner',
                   'description',
                   'franchise']

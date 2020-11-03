@@ -41,7 +41,7 @@ class ProductShowPublicDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['product_name',
+        fields = ['id','product_name',
                   'image',
                   'description',
                   'price',

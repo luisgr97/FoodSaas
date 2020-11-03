@@ -10,4 +10,5 @@ urlpatterns = [
     path('get/<pk>', ProductDetail.as_view()), #ok
     path('update/<pk>', ProductUpdate.as_view()),#ok
     path('delete/<pk>', ProductDelete.as_view()),#ok
+    path('getbymenu/<menuId>',ProductListByMenu.as_view())
 ]
