@@ -1,16 +1,11 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const ModalCarShowProduct = (props) => {
-  const { className } = props;
+  const { product_name, image, description, price } = props;
+  console.log("recibo:", props)
 
   const [modal, setModal] = useState(false);
 
@@ -27,7 +22,7 @@ const ModalCarShowProduct = (props) => {
       <Button onClick={toggle} size="sm">
         ver{" "}
       </Button>
-      <Modal size="lg" isOpen={modal} toggle={toggle} className={className}>
+      <Modal size="lg" isOpen={modal} toggle={toggle}>
         <ModalHeader
           toggle={toggle}
           close={closeBtn}
@@ -51,11 +46,7 @@ const ModalCarShowProduct = (props) => {
                     role="listbox"
                   >
                     <div class="carousel-item active">
-                      <img
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/17.jpg"
-                        alt="First slide"
-                        class="img-fluid"
-                      />
+                      <img src={image} alt="First slide" class="img-fluid" />
                     </div>
                   </div>
                 </div>
@@ -63,19 +54,14 @@ const ModalCarShowProduct = (props) => {
 
               <div class="col-lg-5 text-center text-md-left">
                 <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
-                  <strong>Nombre del Producto</strong>
+                  <strong>{product_name}</strong>
                 </h2>
                 <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">
-                  bestseller
+                  oferta
                 </span>
                 <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
                   <span class="red-text font-weight-bold">
-                    <strong>$49</strong>
-                  </span>
-                  <span class="grey-text">
-                    <small>
-                      <s>$89</s>
-                    </small>
+                    <strong>${price}</strong>
                   </span>
                 </h3>
 
@@ -95,7 +81,7 @@ const ModalCarShowProduct = (props) => {
                         aria-controls="collapseOne1"
                       >
                         <h5 class="mb-0">
-                          Descripción
+                          {description}
                           <i class="fas fa-angle-down rotate-icon"></i>
                         </h5>
                       </a>
@@ -108,14 +94,7 @@ const ModalCarShowProduct = (props) => {
                       aria-labelledby="headingOne1"
                       data-parent="#accordionEx"
                     >
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high
-                        life accusamus terry richardson ad squid. 3 wolf moon
-                        officia aute, non cupidatat skateboard dolor brunch.
-                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-                        wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et.
-                      </div>
+                      <div class="card-body">{description}</div>
                     </div>
                   </div>
 

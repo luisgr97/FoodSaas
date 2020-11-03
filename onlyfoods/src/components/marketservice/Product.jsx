@@ -2,6 +2,9 @@ import React from "react";
 import ModalShowProduct from "./ModalShowProduct";
 
 function Product(props) {
+
+  const { product_name, image, price } = props;
+
   return (
     <div
       className="col-3"
@@ -23,7 +26,7 @@ function Product(props) {
       >
         <div className="flex-sm-row">
           <img
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(38).jpg"
+            src={image}
             className="card-img-top"
             alt="sample_photo"
             style={{
@@ -40,7 +43,7 @@ function Product(props) {
                 fontSize: "100%",
               }}
             >
-              Pizza Aaaa doble queso con tres leches para
+              {product_name}
             </strong>
           </p>
         </div>
@@ -52,11 +55,11 @@ function Product(props) {
                 color: "#90caf9",
               }}
             >
-              29.000$
+              {price}$
             </strong>
           </span>
           <span className="float-right">
-            <ModalShowProduct />
+            <ModalShowProduct data={props} />
           </span>
         </div>
       </div>

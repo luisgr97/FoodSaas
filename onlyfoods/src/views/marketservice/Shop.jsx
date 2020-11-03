@@ -1,14 +1,23 @@
 import React, { Fragment } from "react";
+
+//componentes.
 import Product from "../../components/marketservice/Product";
 import Search from "../../components/marketservice/Search";
 import Modal from "../../components/marketservice/ModalShopCar";
+import { Spinner } from "reactstrap";
+//import { map } from "leaflet";
+
+//libreria para peticiones http
 
 function Shop(props) {
+  //Propiedades.
+  const { products } = props;
+
   return (
     <Fragment>
       <Search />
       <div className="row">
-        <Modal></Modal>
+        <Modal />
         <div className="col-12">
           <ul
             class="nav  nav-justified"
@@ -45,33 +54,75 @@ function Shop(props) {
                 href="#panel7"
                 role="tab"
               >
-                Más Vendido
+                Menú
               </a>
             </li>
           </ul>
         </div>
 
         <div className="row">
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
+          {products == null ? (
+            <>
+              <div className="col-12 text-center">
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '1rem', height: '1rem' }}
+                />{" "}
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '2rem', height: '2rem' }}
+                />{" "}
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '3rem', height: '3rem' }}/>
+                  <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '4rem', height: '4rem' }}/>
+                  <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '5rem', height: '5rem' }}
+                />
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '6rem', height: '6rem' }}
+                />
+                <Spinner
+                  type="grow"
+                  color="info"
+                  size="lg"
+                  style={{ margin: "auto",
+                  width: '7rem', height: '7rem' }}
+                />
+              </div>
+            </>
+          ) : (
+            products.map((element) => (
+              <Product
+                product_name={element.product_name}
+                image={element.image}
+                description={element.description}
+                price={element.price}
+              />
+            ))
+          )}
         </div>
       </div>
     </Fragment>
