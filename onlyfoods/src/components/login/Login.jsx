@@ -1,6 +1,8 @@
 import React from "react";
 
 import logo from "logo.png";
+import kokoriko from "../../assets/images/kokoriko.jpg";
+import dominos from "../../assets/images/dominos.png";
 
 import auth from "components/auth/auth.js";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -47,8 +49,15 @@ class Login extends React.Component {
 
         const delay = 800;
 
-        let data = { email: this.state.email, password: this.state.password };
+        let data = {
+            email: this.state.email,
+            password: this.state.password,
+            schema: api.subdomain
+        };
 
+        console.log(data);
+        console.log(api.route + "/api/logs/in");
+        console.log(api.subdomain);
         // let given; 
         // let obj;
 
@@ -57,7 +66,8 @@ class Login extends React.Component {
         //     "token": "asdasdsa",
         //     "user_id": "awqweqweqw",
         //     "user_type": 1,
-        //     "user_type_name": "admin"
+        //     "user_type_name": "admin",
+        //     "id": 100
         // };
 
         // auth.login(obj, rou => {
@@ -67,22 +77,22 @@ class Login extends React.Component {
         //     }, delay);
         // });
 
-        axios.post(api.route + "/api/log/in", data)
+        axios.post(api.route + "/api/logs/in", data)
             .then(res => {
                 let given = res.data.data;
-                // console.log(given);
+                console.log(res.data);
 
                 let user_type_name;
 
                 switch (given.user_data.typeuser) {
-                    case 1:
-                        user_type_name = "admin"; //admin
+                    case 10:
+                        user_type_name = "admin"; //admin ********
                         break;
-                    case 2:
-                        user_type_name = "operator" //digitador
+                    case 11:
+                        user_type_name = "operator" //digitador ********
                         break;
-                    case 3:
-                        user_type_name = "manager"; //cliente
+                    case 12:
+                        user_type_name = "manager"; //cliente ********
                         break
                     default:
                         break;
@@ -127,7 +137,8 @@ class Login extends React.Component {
                     <Card id="cardLogin" className={this.state.doAnime ? "animated zoomOutUp" : " "}>
                         <CardHeader>
                             <center>
-                                <img src={logo} width="110px" height="110px" alt="description"></img>
+                                <img src={api.subdomain === "kokoriko" ? kokoriko : api.subdomain === "dominos" ? dominos : logo}
+                                    width="180px" height="130px" alt="description"></img>
                                 <CardTitle tag="h5">Login</CardTitle>
                             </center>
                         </CardHeader>

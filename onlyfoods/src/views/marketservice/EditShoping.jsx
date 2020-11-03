@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Search from "../../components/marketservice/Search";
 
 function Payment(props) {
@@ -20,8 +20,8 @@ function Payment(props) {
                     <div class="col-md-5 mb-4">
                       <img
                         src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                        alt="Second_sample_image"
                         class="img-fluid z-depth-1-half"
-                        alt="Second sample image"
 
                       />
                     </div>
@@ -59,7 +59,7 @@ function Payment(props) {
                       <img
                         src="https://mdbootstrap.com/img/Photos/Others/images/44.jpg"
                         class="img-fluid z-depth-1-half"
-                        alt="Second sample image"
+                        alt="Second_sample_image"
                       />
                     </div>
 

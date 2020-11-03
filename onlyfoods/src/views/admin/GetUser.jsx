@@ -8,6 +8,8 @@ import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
 // import axios from "axios";
 
+// import api from "../../api_route.js";
+
 import { connect } from "react-redux";
 
 import {
