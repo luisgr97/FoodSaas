@@ -66,7 +66,7 @@ function MarketServices(props) {
         />
         <div className="col-12">
           <img
-            src={subdomain === "kokoriko" ? kokoriko : dominos}
+            src={subdomain === "kokoriko" ? kokoriko : dominos} // PROBAR SOLO DEJANDO LA VARIABLE subdomain (esta debe concordar con el nombre de la imagen)
             style={{
               height: "300px",
               width: "400px",
