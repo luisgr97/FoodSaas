@@ -47,4 +47,18 @@ class UserDelete(DestroyAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
+class DigList(ListAPIView):
+    """View to list Digitadores"""
+    queryset = CustomUser.objects.all()
+    serializer_class = UserShowPublicDataSerializer
+    def get_queryset(self):
+        dig = CustomUser.objects.filter(typeuser__typeusers='digitador')
+        return dig
 
+class ClientList(ListAPIView):
+    """View to list Digitadores"""
+    queryset = CustomUser.objects.all()
+    serializer_class = UserShowPublicDataSerializer
+    def get_queryset(self):
+        client = CustomUser.objects.filter(typeuser__typeusers='cliente')
+        return client

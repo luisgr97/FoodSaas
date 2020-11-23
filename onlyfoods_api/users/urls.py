@@ -11,6 +11,8 @@ urlpatterns = [
     path('get/<pk>', UserDetail.as_view()), #ok
     path('update/<pk>', UserUpdate.as_view()),#ok
     path('delete/<pk>', UserDelete.as_view()),#ok
+    path('listdig', DigList.as_view()),
+    path('listclients', ClientList.as_view()),
 
     # CRUD => Create, Read, Update, Delete
     path('type/create', TypeUserCreate.as_view()),#ok
