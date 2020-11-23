@@ -26,6 +26,11 @@ class Auth{
         return t.user_type_name;
     }
 
+    getPlan(){
+        let t = JSON.parse(this.authenticated); 
+        return t.plan;
+    }
+
     getSession(){
         return JSON.parse(this.authenticated); 
     }

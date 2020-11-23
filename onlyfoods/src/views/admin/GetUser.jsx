@@ -8,7 +8,7 @@ import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
 // import axios from "axios";
 
-// import api from "../../api_route.js";
+import api from "../../api_route.js";
 
 import { connect } from "react-redux";
 
@@ -115,11 +115,15 @@ class GetUser extends React.Component {
 
         const people = this.state.persons.map((p, k) => (
             <tr key={k}>
-                <th scope="row">#{k + 1}</th>
-                <th>{p.name}</th>
-                <th>{p.id_user}</th>
-                <th>{p.email}</th>
-                {/* <th>{p.user_type}</th> */}
+                <th scope="row">{k + 1}</th>
+                <th>
+                    <img src={p.profile_picture} alt="asdasa" />
+                </th>
+                <th>{p.id}</th>
+                <th>{p.first_name}</th>
+                <th>{p.last_name}</th>
+
+                <th></th>
                 <th>
                     <Button color="success" onClick={() => this.openToggle(p)}>
                         <i className="nc-icon nc-zoom-split" />
@@ -157,11 +161,18 @@ class GetUser extends React.Component {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th><Tr content="clientForm.name" /></th>
+                                                <th>Pic</th>
                                                 <th>ID</th>
+                                                <th>
+                                                    <Tr content="clientForm.name" />
+                                                </th>
+                                                <th>
+                                                    Apellido
+                                                </th>
                                                 <th>Email</th>
-                                                <th>Consultar</th>
-                                                {/* <th><Tr content="clientForm.type" /></th> */}
+                                                <th>
+                                                    <Tr content="getClients.review" />
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -190,17 +201,10 @@ class GetUser extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('https://energycorp.herokuapp.com/api/user/worker/');
+        const res = await fetch(api.route + "/api/users/listdig");
         const data = await res.json();
-        console.log(data)
-        var parsedData = [];
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].user_type !== 1) {
-                parsedData.push(this.parseToShow(data[i]));
-            }
-        }
-
-        this.setState({ persons: parsedData });
+        // console.log(data)
+        this.setState({ persons: data });
     }
 
 };

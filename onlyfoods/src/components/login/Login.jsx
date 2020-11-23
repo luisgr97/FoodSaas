@@ -100,7 +100,8 @@ class Login extends React.Component {
                     "user_id": given.user_data.document_id,
                     "user_type": given.user_data.typeuser,
                     "user_type_name": user_type_name,
-                    "id": given.user_data.id
+                    "id": given.user_data.id,
+                    "plan": given.plan
                 };
 
                 auth.login(obj, rou => {

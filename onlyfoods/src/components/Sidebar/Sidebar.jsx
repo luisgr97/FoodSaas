@@ -23,6 +23,7 @@ import { Nav } from "reactstrap";
 import PerfectScrollbar from "perfect-scrollbar";
 import api from "../../api_route.js";
 import logo from "logo.png";
+import auth from "components/auth/auth.js";
 
 var ps;
 
@@ -74,26 +75,79 @@ class Sidebar extends React.Component {
         </div>
         <div className="sidebar-wrapper" ref={this.sidebar}>
           <Nav>
-            {this.props.routes.map((prop, key) => {
-              return (
-                <li
-                  className={
-                    this.activeRoute(prop.path) +
-                    (prop.pro ? " active-pro" : "")
-                  }
-                  key={key}
-                >
-                  <NavLink
-                    to={prop.layout + prop.path}
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    <i className={prop.icon} />
-                    <p>{prop.name}</p>
-                  </NavLink>
-                </li>
-              );
-            })}
+            {
+              auth.getPlan() === "Premium" ? (
+                this.props.routes.map((r, key) => {
+                  return (
+                    <li
+                      className={
+                        this.activeRoute(r.path) +
+                        (r.pro ? " active-pro" : "")
+                      }
+                      key={key}
+                    >
+                      <NavLink
+                        to={r.layout + r.path}
+                        className="nav-link"
+                        activeClassName="active"
+                      >
+                        <i className={r.icon} />
+                        <p>{r.name}</p>
+                      </NavLink>
+                    </li>
+                  );
+                })
+              ) :
+                auth.getPlan() === "Basico" ? (
+                  this.props.routes.map((r, key) => {
+                    return (
+                      r.plan === "Basico" ? (
+                        <li
+                          className={
+                            this.activeRoute(r.path) +
+                            (r.pro ? " active-pro" : "")
+                          }
+                          key={key}
+                        >
+                          <NavLink
+                            to={r.layout + r.path}
+                            className="nav-link"
+                            activeClassName="active"
+                          >
+                            <i className={r.icon} />
+                            <p>{r.name}</p>
+                          </NavLink>
+                        </li>
+                      ) : true
+                    )
+                  })
+                ) :
+                  auth.getPlan() === "Normal" ? (
+                    this.props.routes.map((r, key) => {
+                      return (
+                        r.plan === "Basico" || r.plan === "Normal" ? (
+                          <li
+                            className={
+                              this.activeRoute(r.path) +
+                              (r.pro ? " active-pro" : "")
+                            }
+                            key={key}
+                          >
+                            <NavLink
+                              to={r.layout + r.path}
+                              className="nav-link"
+                              activeClassName="active"
+                            >
+                              <i className={r.icon} />
+                              <p>{r.name}</p>
+                            </NavLink>
+                          </li>
+                        ) : true
+                      )
+                    })
+                  ) : true
+            }
+
           </Nav>
         </div>
       </div>
