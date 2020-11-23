@@ -8,6 +8,8 @@ import spanish from "../../langs/spanish.js";
 import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
 
+import api from "../../api_route.js";
+
 import { connect } from "react-redux";
 
 import {
@@ -66,31 +68,33 @@ class GetClients extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('https://energycorp.herokuapp.com/api/user/client/');
-
+        const res = await fetch(api.route + "/api/users/list");
         const data = await res.json();
         // console.log(data)
-
         this.setState({ persons: data });
     }
 
     render() {
 
-        var filteredPeople = [];
+        // var filteredPeople = [];
 
-        filteredPeople = this.state.persons.filter(p => (
-            p.user.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-        ));
+        // filteredPeople = this.state.persons.filter(p => (
+        //     p.user.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        // ));
 
-        const people = filteredPeople.map((p, k) => (
+        const people = this.state.persons.map((p, k) => (
             <tr key={k}>
-                <th scope="row">#{k + 1}</th>
-                <th>{p.user.id_user}</th>
-                <th>{p.user.name}</th>
-                <th>{p.user.phone}</th>
-                <th>{p.user.email}</th>
+                <th scope="row">{k + 1}</th>
                 <th>
-                    <Button color="warning" onClick={() => this.openToggle(p)}>
+                    <img src={p.profile_picture} alt="asdasa" />
+                </th>
+                <th>{p.id}</th>
+                <th>{p.first_name}</th>
+                <th>{p.last_name}</th>
+
+                <th></th>
+                <th>
+                    <Button color="success" onClick={() => this.openToggle(p)}>
                         <i className="nc-icon nc-zoom-split" />
                     </Button>
                 </th>
@@ -117,16 +121,17 @@ class GetClients extends React.Component {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Pic</th>
                                                 <th>ID</th>
                                                 <th>
-                                                    <Tr content="clientForm.name"/>
+                                                    <Tr content="clientForm.name" />
                                                 </th>
                                                 <th>
-                                                    <Tr content="clientForm.phone"/>
+                                                    <Tr content="clientForm.phone" />
                                                 </th>
                                                 <th>Email</th>
                                                 <th>
-                                                    <Tr content="getClients.review"/>
+                                                    <Tr content="getClients.review" />
                                                 </th>
                                             </tr>
                                         </thead>
@@ -142,7 +147,7 @@ class GetClients extends React.Component {
                     <div>
                         <Modal md="7" isOpen={this.state.modal} toggle={this.closeToggle} className="danger">
                             <ModalHeader toggle={this.closeToggle}>
-                                <Tr content="getClients.edit"/>
+                                <Tr content="getClients.edit" />
                             </ModalHeader>
                             <ModalBody>
                                 <CreateClientForm submitAction={this.editUser} user={this.state.user} editMode={true} />

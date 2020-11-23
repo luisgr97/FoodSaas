@@ -100,7 +100,7 @@ class Start extends React.Component {
                   height: "250px",
                 }}
               ></img>
-              <div class="container mt-5"></div>
+              <div className="container mt-5"></div>
               <Sectionone />
               <hr />
               <h1>Nuestros servicios</h1>
