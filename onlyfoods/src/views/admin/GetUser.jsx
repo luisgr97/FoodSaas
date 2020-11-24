@@ -1,12 +1,15 @@
 import React from "react";
-import CreateUserForm from "views/admin/CreateUserForm.jsx";
+// import CreateUserForm from "views/admin/CreateUserForm.jsx";
+import CreateClientForm from "views/operator/CreateClientForm.jsx";
 
 import counterpart from "counterpart";
 import * as Tr from "react-translate-component";
 import spanish from "../../langs/spanish.js";
 import english from "../../langs/english.js";
 import portuguese from "../../langs/portuguese.js";
-// import axios from "axios";
+import axios from "axios";
+
+import ReactLoading from 'react-loading';
 
 import api from "../../api_route.js";
 
@@ -33,6 +36,7 @@ class GetUser extends React.Component {
             modal: false,
             selected: 'All',
             user: {},
+            loading: true
         }
     }
 
@@ -55,65 +59,44 @@ class GetUser extends React.Component {
         });
     }
 
+    getPersons = async () => {
+        const res = await fetch(api.route + "/api/users/listdig");
+        const data = await res.json();
+        console.log(data)
+        this.setState({ persons: data, loading: false });
+    }
+
     editUser = s => {
-        // axios.post("https://energycorp.herokuapp.com/api/user/client/" + s.id + "/update/", s)
-        //     .then(res => {
-        //         alert("AXION REALIZADA CON EXITO");
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+        // delete s.typeuser;
+        console.log(s);
+        axios.post(api.route + "/api/users/update/" + s.id, s)
+            .then(res => {
+                alert("AXION REALIZADA CON EXITO");
+                this.setState({ persons: [], loading: true });
+                this.getPersons();
+            })
+            .catch(err => {
+                console.log(err);
+            })
         this.closeToggle();
     }
 
-    parseToShow = user => {
-        let parsed = {
-            user_type: '',
-            id: user.user.id, //OTRO ID DIFERENTE 
-            id_user: user.user.id_user,
-            name: user.user.name,
-            email: user.user.email,
-            address: user.user.address,
-            neighborhood: user.user.neighborhood,
-            phone: user.user.phone,
-            // stratus: user.user.stratus,
-            is_active: user.user.is_active,
-        }
 
-        if (user.user_type === 2) {
-            parsed.user_type = 'gerente';
-        } else if (user.user_type === 3) {
-            parsed.user_type = 'operador';
-        }
-        return parsed;
-
+    componentDidMount() {
+        this.getPersons();
     }
+
+
 
     render() {
 
-        // const trans = (tipo) => {
-        //     if (tipo === 'operador') {
-        //         return counterpart.translate('createUser.operator');
-        //     } else {
-        //         return counterpart.translate('createUser.manager');
-        //     }
-        // }
+        var filteredPeople = [];
 
-        // var filteredPeople = [];
+        filteredPeople = this.state.persons.filter(p => (
+            p.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        ));
 
-        // if (this.state.selected !== counterpart.translate('getUser.all')) {
-        //     //Filtrar por ambas formas al tiempo
-        //     filteredPeople = this.state.persons.filter(p => (
-        //         trans(p.user_type).toLowerCase() === this.state.selected.toLowerCase() &&
-        //         p.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-        //     ));
-        // } else { //Filtrar solo por busqueda
-        //     filteredPeople = this.state.persons.filter(p => (
-        //         p.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-        //     ));
-        // }
-
-        const people = this.state.persons.map((p, k) => (
+        const people = filteredPeople.map((p, k) => (
             <tr key={k}>
                 <th scope="row">{k + 1}</th>
                 <th>
@@ -122,6 +105,8 @@ class GetUser extends React.Component {
                 <th>{p.id}</th>
                 <th>{p.first_name}</th>
                 <th>{p.last_name}</th>
+                <th>{p.email}</th>
+                <th>{p.phone_number}</th>
 
                 <th></th>
                 <th>
@@ -143,54 +128,53 @@ class GetUser extends React.Component {
                             <CardBody>
                                 <Col>
                                     <Row>
-                                        {/* <Col>
-                                            <select onChange={this.handleInput} className="form-control" name="selected">
-                                                <Tr content="getUser.all" component="option" />
-                                                <Tr content="createUser.operator" component="option" />
-                                                <Tr content="createUser.manager" component="option" />
-                                            </select>
-                                        </Col> */}
-                                        <Col>
-                                            <FormGroup>
-                                                <Input onChange={this.handleInput} name="search" placeholder={placeholderSearch}></Input>
-                                            </FormGroup>
-                                        </Col>
+                                        <FormGroup>
+                                            <Input onChange={this.handleInput} name="search" placeholder={placeholderSearch}></Input>
+                                        </FormGroup>
                                     </Row>
                                     <br></br>
-                                    <Table responsive>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Pic</th>
-                                                <th>ID</th>
-                                                <th>
-                                                    <Tr content="clientForm.name" />
-                                                </th>
-                                                <th>
-                                                    Apellido
-                                                </th>
-                                                <th>Email</th>
-                                                <th>
-                                                    <Tr content="getClients.review" />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {people}
-                                        </tbody>
-                                    </Table>
+                                    {
+                                        this.state.loading
+                                            ?
+                                            <center>
+                                                <ReactLoading type="spin" color="green"></ReactLoading>
+                                            </center>
+                                            :
+                                            <Table responsive>
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Pic</th>
+                                                        <th>ID</th>
+                                                        <th>
+                                                            Nombre
+                                                    </th>
+                                                        <th>
+                                                            Apellido
+                                                    </th>
+                                                        <th>Email</th>
+                                                        <th>
+                                                            Telefono
+                                                    </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {people}
+                                                </tbody>
+                                            </Table>
+                                    }
+
                                 </Col>
                             </CardBody>
                         </Card>
                     </Col>
-
                     <div>
                         <Modal md="7" isOpen={this.state.modal} toggle={this.closeToggle} className="danger">
                             <ModalHeader toggle={this.closeToggle}>
                                 <Tr content="getClients.edit" />
                             </ModalHeader>
                             <ModalBody>
-                                <CreateUserForm submitAction={this.editUser} user={this.state.user} editMode={true} />
+                                <CreateClientForm submitAction={this.editUser} user={this.state.user} editMode={true} />
                             </ModalBody>
                         </Modal>
                     </div>
@@ -199,14 +183,6 @@ class GetUser extends React.Component {
             </div>
         )
     }
-
-    async componentDidMount() {
-        const res = await fetch(api.route + "/api/users/listdig");
-        const data = await res.json();
-        // console.log(data)
-        this.setState({ persons: data });
-    }
-
 };
 
 const mapStateToProps = state => {
