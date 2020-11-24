@@ -18,28 +18,56 @@ var adminRoutes = [
     name: "Lista de Digitadores",
     icon: "nc-icon nc-badge",
     component: GetUser,
-    layout: "/admin"
+    layout: "/admin",
+    plan: "Basico",
   },
   {
     path: "/getClients",
     name: "Lista de Clientes",
     icon: "nc-icon nc-badge",
     component: GetClients,
-    layout: "/admin"
+    layout: "/admin",
+    plan: "Basico",
   },
   {
     path: "/createUser",
     name: "Crear Digitador",
     icon: "nc-icon nc-diamond",
     component: CreateDigitator,
-    layout: "/admin"
+    layout: "/admin",
+    plan: "Basico",
+  },
+  {
+    path: "/reportes",
+    name: "Reportes",
+    icon: "nc-icon nc-pin-3",
+    component: "sdf",
+    layout: "/admin",
+    plan: "Normal",
+  },
+  {
+    path: "/personalizacion",
+    name: "Personalizacion",
+    icon: "nc-icon nc-pin-3",
+    component: "sdsf",
+    layout: "/admin",
+    plan: "Premium",
+  },
+  {
+    path: "/bot",
+    name: "PWA | Bot",
+    icon: "nc-icon nc-pin-3",
+    component: "sdsf",
+    layout: "/admin",
+    plan: "Premium",
   },
   {
     path: "/transformersMap",
     name: "Map",
     icon: "nc-icon nc-pin-3",
     component: TransformersMap,
-    layout: "/admin"
+    layout: "/admin",
+    plan: "Premium",
   }
 ];
 

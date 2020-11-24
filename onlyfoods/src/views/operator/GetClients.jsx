@@ -68,7 +68,7 @@ class GetClients extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await fetch(api.route + "/api/users/list");
+        const res = await fetch(api.route + "/api/users/listclients");
         const data = await res.json();
         // console.log(data)
         this.setState({ persons: data });
@@ -127,7 +127,7 @@ class GetClients extends React.Component {
                                                     <Tr content="clientForm.name" />
                                                 </th>
                                                 <th>
-                                                    <Tr content="clientForm.phone" />
+                                                    Apellido
                                                 </th>
                                                 <th>Email</th>
                                                 <th>
