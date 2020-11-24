@@ -3397,6 +3397,14 @@ License - nucleoapp.com/license/
   .off-canvas-sidebar[data-color="blue"]:after {
     background: #000f6c; }
 
+.sidebar[data-color="red"]:after,
+  .off-canvas-sidebar[data-color="red"]:after {
+    background: rgb(149, 17, 17) }
+
+.sidebar[data-color="black"]:after,
+  .off-canvas-sidebar[data-color="black"]:after {
+    background: #000; }
+
       
 
   .sidebar[data-active-color="primary"] .nav li.active > a,

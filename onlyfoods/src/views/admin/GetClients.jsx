@@ -1,5 +1,5 @@
 import React from "react";
-import CreateClientForm from "views/operator/CreateClientForm.jsx";
+import CreateClientForm from "./CreateClientForm.jsx";
 import axios from 'axios';
 
 import counterpart from "counterpart";

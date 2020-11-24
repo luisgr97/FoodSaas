@@ -1,8 +1,10 @@
 // import CreateUser from "views/admin/CreateUser.jsx";
 import CreateDigitator from "views/admin/CreateDigitator.jsx";
-import GetClients from "views/operator/GetClients.jsx";
+import GetClients from "views/admin/GetClients.jsx";
 import GetUser from "views/admin/GetUser.jsx";
 import TransformersMap from "views/admin/TransformersMap.jsx";
+import Customization from "views/admin/Customization.jsx";
+
 // import CreateReports from "views/manager/CreateReports.jsx";
 
 var adminRoutes = [
@@ -49,7 +51,7 @@ var adminRoutes = [
     path: "/personalizacion",
     name: "Personalizacion",
     icon: "nc-icon nc-pin-3",
-    component: "sdsf",
+    component: Customization,
     layout: "/admin",
     plan: "Premium",
   },

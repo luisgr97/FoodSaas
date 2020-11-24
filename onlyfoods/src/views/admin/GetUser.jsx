@@ -1,6 +1,5 @@
 import React from "react";
-// import CreateUserForm from "views/admin/CreateUserForm.jsx";
-import CreateClientForm from "views/operator/CreateClientForm.jsx";
+import CreateClientForm from "./CreateClientForm.jsx";
 
 import counterpart from "counterpart";
 import * as Tr from "react-translate-component";

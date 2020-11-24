@@ -3,6 +3,7 @@ import {createStore} from "redux";
 const initialState = {
     language: 'es',
     name: 'Pirlo',
+    color: '',
 }
 
 const reducerLang = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const reducerLang = (state = initialState, action) => {
         return {
             ...state,
             name: action.name
+        }
+    } else if (action.type === "CHANGE_COLOR"){
+        return {
+            ...state,
+            color: action.color
         }
     }
     return state;

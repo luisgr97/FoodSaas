@@ -26,6 +26,7 @@ import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 // import routes from "routes/routes.js";
+import { connect } from "react-redux";
 
 var ps;
 
@@ -67,21 +68,26 @@ class DashLayout extends React.Component {
     const la = this.props.routes[0].layout;
     if (la === "/admin") {
       return "success";
-    }else if(la === "/operator"){
+    } else if (la === "/operator") {
       return "warning";
-    }else{
+    } else {
       return "info";
     }
   }
 
   getBackgroundColor = () => {
-    const la = this.props.routes[0].layout;
-    if (la === "/admin") {
-      return "green";
-    }else if(la === "/operator"){
-      return "yellow";
-    }else{
-      return "blue";
+
+    if (this.props.color !== '') {
+      return this.props.color;
+    } else {
+      const la = this.props.routes[0].layout;
+      if (la === "/admin") {
+        return "green";
+      } else if (la === "/operator") {
+        return "yellow";
+      } else {
+        return "blue";
+      }
     }
   }
 
@@ -115,4 +121,8 @@ class DashLayout extends React.Component {
   }
 }
 
-export default DashLayout;
+const mapStateToProps = state => ({ color: state.color });
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashLayout);
