@@ -3,6 +3,7 @@ import React from "react";
 import logo from "logo.png";
 import kokoriko from "../../assets/images/kokoriko.jpg";
 import dominos from "../../assets/images/dominos.png";
+import qbano from "../../assets/images/qbano.png";
 
 import auth from "components/auth/auth.js";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -73,7 +74,7 @@ class Login extends React.Component {
         //         this.props.history.push("/" + rou)
         //     }, delay);
         // });
-
+        // console.log(api.route + "/api/logs/in")
         axios.post(api.route + "/api/logs/in", data)
             .then(res => {
                 let given = res.data.data;
@@ -135,7 +136,7 @@ class Login extends React.Component {
                     <Card id="cardLogin" className={this.state.doAnime ? "animated zoomOutUp" : " "}>
                         <CardHeader>
                             <center>
-                                <img src={api.subdomain === "kokoriko" ? kokoriko : api.subdomain === "dominos" ? dominos : logo}
+                                <img src={api.subdomain === "kokoriko" ? kokoriko : api.subdomain === "dominos" ? dominos : api.subdomain === "qbano" ? qbano : logo}
                                     width="180px" height="130px" alt="description"></img>
                                 <CardTitle tag="h5">Login</CardTitle>
                             </center>

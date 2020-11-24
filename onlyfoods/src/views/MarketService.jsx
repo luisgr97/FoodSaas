@@ -12,6 +12,8 @@ import Cofirmation from "./marketservice/Confirmation";
 //Imagenes de los clientes.
 import kokoriko from "../assets/images/kokoriko.jpg";
 import dominos from "../assets/images/dominos.png";
+import qbano from "../assets/images/qbano.png";
+
 
 //peticiones http.
 import Axios from "axios";
@@ -66,7 +68,8 @@ function MarketServices(props) {
         />
         <div className="col-12">
           <img
-            src={subdomain === "kokoriko" ? kokoriko : dominos} // PROBAR SOLO DEJANDO LA VARIABLE subdomain (esta debe concordar con el nombre de la imagen)
+            src={subdomain === "kokoriko" ? kokoriko : 
+            subdomain === "dominos" ? dominos : qbano}
             style={{
               height: "300px",
               width: "400px",
