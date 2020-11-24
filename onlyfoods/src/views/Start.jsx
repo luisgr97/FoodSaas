@@ -9,7 +9,7 @@ import Sectionfive from "components/Landingpage/Sectionfive";
 import MarketServices from "./MarketService";
 
 
-// import ChatBot from "components/chatBot/ChatBot.jsx";
+import ChatBot from "components/chatBot/ChatBot.jsx";
 
 import counterpart from "counterpart";
 // import * as Tr from "react-translate-component";
@@ -85,6 +85,7 @@ class Start extends React.Component {
     return (
       <div>
         <DemoNavbar {...this.props} />
+        
         <div className="contentStart">
           {api.isLocalhost ? (
             <center>
@@ -112,12 +113,13 @@ class Start extends React.Component {
               <h1>Preguntas Frecuentes</h1>
               <Sectionfour />
               <hr />
-              <Sectionfive/>
+              <Sectionfive />
             </center>
           ) : (
-              <MarketServices subdomain={api.subdomain}/>
-          )}
+              <MarketServices subdomain={api.subdomain} />
+            )}
         </div>
+        <ChatBot close={this.closeChat} />
         {/* {
                     this.state.visibleChat
                         ? <ChatBot close={this.closeChat} />
