@@ -8,7 +8,6 @@ import Sectionfour from "components/Landingpage/Sectionfour";
 import Sectionfive from "components/Landingpage/Sectionfive";
 import MarketServices from "./MarketService";
 
-
 import ChatBot from "components/chatBot/ChatBot.jsx";
 
 import counterpart from "counterpart";
@@ -20,7 +19,7 @@ import portuguese from "../langs/portuguese.js";
 import api from "../api_route.js";
 import logo from "../assets/images/logo.png";
 
-// import bot_gif from "./bot_gif.gif";
+import bot_gif from "./bot_gif.gif";
 
 import { connect } from "react-redux";
 
@@ -85,7 +84,7 @@ class Start extends React.Component {
     return (
       <div>
         <DemoNavbar {...this.props} />
-        
+
         <div className="contentStart">
           {api.isLocalhost ? (
             <center>
@@ -119,7 +118,11 @@ class Start extends React.Component {
               <MarketServices subdomain={api.subdomain} />
             )}
         </div>
-        <ChatBot close={this.closeChat} />
+        {
+          this.state.visibleChat === true
+            ? <ChatBot close={this.closeChat} />
+            : <img onClick={this.openChat} className="floatingBot animated wobble" src={bot_gif} width="95px" height="120px" alt="description"></img>
+        }
         {/* {
                     this.state.visibleChat
                         ? <ChatBot close={this.closeChat} />
