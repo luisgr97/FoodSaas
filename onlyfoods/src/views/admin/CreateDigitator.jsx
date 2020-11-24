@@ -1,126 +1,107 @@
 import React from "react";
-// import CreateUserForm from "views/admin/CreateUserForm.jsx";
 
-import counterpart from "counterpart";
-import * as Tr from "react-translate-component";
-import spanish from "../../langs/spanish.js";
-import english from "../../langs/english.js";
-import portuguese from "../../langs/portuguese.js";
+import axios from "axios";
+
+import api from "../../api_route.js";
 
 // reactstrap components
 import {
-    Card,
-    CardBody,
-    Row,
-    Col, Button,
-    Form, FormGroup, Label, Input
+    Row, Col, Form, FormGroup, Input, Button, Card, CardBody
 } from "reactstrap";
 
-// import Axios from "axios";
-
-import { connect } from "react-redux";
-
-counterpart.registerTranslations('en', english);
-counterpart.registerTranslations('es', spanish);
-counterpart.registerTranslations('po', portuguese);
-
-class CreateDigitator extends React.Component {
+class CrerateDigitator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            first_name: "",
+            first_name: "", 
             last_name: "",
             document_id: "",
             phone_number: "",
-            address: "",
-            date_of_birth: null,
-            typeuser: null,
-            password: "",
-            is_staff: false
+            address: "", 
+            date_of_birth: null, 
+            type_user: 10,
+            password: "uv2020", 
+            is_staff: true,
         }
     }
 
+    handleInput = e => {
+
+        let v = e.target.value;
+        if (e.target.name === "document_id" || e.target.name === "phone_number"){
+            v = parseInt(v);
+        }
+
+        this.setState({
+            [e.target.name]: v
+        });
+    }
+    cleanForm = () => {
+        document.getElementById("form").reset();
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        console.log(this.state);
+        axios.post(api.route + "/api/users/create", this.state)
+            .then(res => {
+                alert("Creado");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
 
     render() {
         return (
             <div className="content">
-                <Row>
-                    <Col md="6" >
-                        <Card>
-                            <CardBody>
-                                <Form id="form" onSubmit={this.handleSubmit}>
-                                    <FormGroup>
-                                        <div>
-                                            <Row>
-                                                <Col>
-                                                    <Label for="">Email</Label>
-                                                    <Input onChange={this.handleInput} value={this.state.email} type="email" name="email" required />
-                                                </Col>
-                                            </Row>
+                <Card>
+                    <CardBody>
+                        <Form id="form" onSubmit={this.handleSubmit}>
+                            <FormGroup>
+                                <div>
+                                    <Row>
+                                        <Col>
+                                            <Input onChange={this.handleInput} value={this.state.id} type="number" name="document_id" placeholder="Cedula" required />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            {/* <Input onChange={this.handleInput} value={this.state.profile_picture} type="text" name="profile_picture" placeholder="Imagen" required /> */}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Input onChange={this.handleInput} value={this.state.first_name} type="text" name="first_name" placeholder="Nombre" required />
+                                        </Col>
+                                    </Row>
+                                    <Input onChange={this.handleInput} value={this.state.last_name} type="text" name="last_name" placeholder="Apellido" required />
 
-                                            <Row>
-                                                <Col>
-                                                    <Label for="">
-                                                        Nombres
-                                                    </Label>
-                                                    <Input onChange={this.handleInput} value={this.state.name} type="text" name="first_name" required />
-                                                </Col>
-                                                <Col>
-                                                    <Label for="">
-                                                        Apellidos
-                                                    </Label>
-                                                    <Input onChange={this.handleInput} value={this.state.name} type="text" name="last_name" required />
-                                                </Col>
-                                            </Row>
-                                            <Label for="">Documento</Label>
-                                            <Input onChange={this.handleInput} value={this.state.document_id} type="int" name="document_id" required />
-                                            <Label for="">Telefono</Label>
-                                            <Input onChange={this.handleInput} value={this.state.phone_number} type="int" name="phone_number" required />
+                                    <Row>
+                                        <Col>
+                                            <Input onChange={this.handleInput} value={this.state.email} type="email" name="email" placeholder="Email" required />
+                                        </Col>
+                                        <Col>
+                                            <Input onChange={this.handleInput} value={this.state.phone_number} type="number" name="phone_number" placeholder="Telefono" required />
+                                        </Col>
 
-                                            <Row>
-                                                <Col>
-                                                    <Label for="">
-                                                        Direccion
-                                                    </Label>
-                                                    <Input onChange={this.handleInput} value={this.state.address} type="text" name="address" required />
-                                                </Col>
-                                                <Col>
-                                                    <Label for="">
-                                                        Fecha de Naciemiento
-                                                    </Label>
-                                                    <Input onChange={this.handleInput} value={this.state.date_of_birth} type="date" name="date_of_birth" required />
-                                                </Col>
-                                            </Row>
-                                        </div>
-                                    </FormGroup>
-                                </Form>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <Card>
-                            <CardBody>
-                            </CardBody>
-                        </Card>
-                        <center>
+                                    </Row>
+
+                                    <Input onChange={this.handleInput} value={this.state.address} type="text" name="address" placeholder="Direccion" required />
+
+                                </div>
+                            </FormGroup>
                             <Button color="success">
-                                <Tr content="createClient.create" />
+                                Crear
                             </Button>
-                        </center>
-
-                    </Col>
-                </Row>
+                        </Form>
+                    </CardBody>
+                </Card>
             </div>
         )
     }
 };
 
-const mapStateToProps = state => {
-    counterpart.setLocale(state.language);
-    return { lng: state.language }
-}
-
-const mapDispatchToProps = dispatch => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateDigitator);
+export default CrerateDigitator;
