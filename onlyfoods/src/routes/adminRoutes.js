@@ -4,6 +4,8 @@ import GetClients from "views/admin/GetClients.jsx";
 import GetUser from "views/admin/GetUser.jsx";
 import TransformersMap from "views/admin/TransformersMap.jsx";
 import Customization from "views/admin/Customization.jsx";
+import CreateReports from "views/admin/CreateReports.jsx";
+
 
 // import CreateReports from "views/manager/CreateReports.jsx";
 
@@ -43,7 +45,7 @@ var adminRoutes = [
     path: "/reportes",
     name: "Reportes",
     icon: "nc-icon nc-pin-3",
-    component: "sdf",
+    component: CreateReports,
     layout: "/admin",
     plan: "Normal",
   },
