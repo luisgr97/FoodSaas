@@ -45,6 +45,12 @@ class Login extends React.Component {
         });
     };
 
+    async componentDidMount(){
+        const res = await fetch(api.route + "/api/users/type/list");
+        const data = await res.json();
+        console.log("====>", data);
+    }
+
     signin = e => {
         e.preventDefault();
 
@@ -104,6 +110,8 @@ class Login extends React.Component {
                     "id": given.user_data.id,
                     "plan": given.plan
                 };
+
+                console.log(obj);
 
                 auth.login(obj, rou => {
                     this.setState({ doAnime: true });

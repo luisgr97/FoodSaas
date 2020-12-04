@@ -39,11 +39,11 @@ const ModalCarShop = (props) => {
         onClick={toggle}
         style={{
           position: "fixed",
-          top: "52%",
+          top: "50%",
           right: "3%",
           borderRadius: "100%",
-          height: "95px",
-          width: "85px",
+          height: "65px",
+          width: "65px",
           backgroundColor: "#80deea",
           border: "2px solid",
           zIndex: "3",

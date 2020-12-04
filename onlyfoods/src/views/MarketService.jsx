@@ -42,7 +42,7 @@ function MarketServices(props) {
           if (res.status === 200) {
             setProducts(res.data);
           } else {
-            console.log("code: "+res.status+", message: "+res.data);
+            console.log("code: " + res.status + ", message: " + res.data);
           }
         })
         .catch((err) => {
@@ -57,6 +57,18 @@ function MarketServices(props) {
   return (
     <div className="container">
       <div className="row text-center">
+        <div className="col-12">
+          <img
+            src={subdomain === "kokoriko" ? kokoriko :
+              subdomain === "dominos" ? dominos : qbano}
+            style={{
+              height: "300px",
+              width: "400px",
+              margin: "auto",
+            }}
+            alt="sample_photo"
+          />
+        </div>
         <Stepper
           steps={[
             { title: "Selecciona tus productos" },
@@ -66,18 +78,6 @@ function MarketServices(props) {
           ]}
           activeStep={active_step}
         />
-        <div className="col-12">
-          <img
-            src={subdomain === "kokoriko" ? kokoriko : 
-            subdomain === "dominos" ? dominos : qbano}
-            style={{
-              height: "300px",
-              width: "400px",
-              margin: "auto",
-            }}
-            alt="sample_photo"
-          />
-        </div>
       </div>
       {active_step === 0 ? (
         <Shop products={products} />
@@ -86,8 +86,8 @@ function MarketServices(props) {
       ) : active_step === 2 ? (
         <Cofirmation />
       ) : (
-        <Payment />
-      )}
+              <Payment />
+            )}
     </div>
   );
 }
