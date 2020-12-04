@@ -88,8 +88,7 @@ const ModalCarShop = (props) => {
                 <tbody>
                   {
                     temp.map((element) => {
-                      total +=
-                        parseInt(element.price) * parseInt(element.amount);
+                      total += parseInt(element.price) * parseInt(element.amount);
                       return (
                         <tr>
                           <th scope="row">

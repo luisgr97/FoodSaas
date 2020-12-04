@@ -19,6 +19,7 @@ function Shop({ products }) {
   const handleOnChange = e => {
     var q = e.target.value;
     setQuery(q);
+    handleSearch();
     // console.log(list, products);
   };
 

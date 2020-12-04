@@ -20,12 +20,14 @@ const ModalCarShowProduct = (props) => {
     e.preventDefault();
     //guarda en el storage el producto a comprar.
     var temp = JSON.parse(localStorage.getItem("Car-shop"));
+    // localStorage.removeItem("Car-shop");
+    console.log(temp);
     var repet = false;
     //Si ya esta adicionado al carrito, sumele uno a la cantidad.
     temp.forEach((element) => {
-      if (element.product_name === product_name){
+      if (element.product_name === product_name) {
         repet = true;
-      }else{
+      } else {
         element.amount += 1;
       }
     });
@@ -169,10 +171,10 @@ const ModalCarShowProduct = (props) => {
                             </>
                           ))
                         ) : (
-                          <span role="img" aria-label=".">
-                            ✅ sin ingredientes
-                          </span>
-                        )}
+                            <span role="img" aria-label=".">
+                              ✅ sin ingredientes
+                            </span>
+                          )}
                       </div>
                     </div>
                   </div>
