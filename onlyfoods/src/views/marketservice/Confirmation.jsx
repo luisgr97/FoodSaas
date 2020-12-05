@@ -4,6 +4,9 @@ import React from "react";
 function Payment(props) {
   // const [rSelected, setRSelected] = useState(null);
 
+  var temp = JSON.parse(localStorage.getItem("Car-shop"));
+  var total = 0;
+
   return (
     <div className="container mt-5">
       <section className="dark-grey-text">
@@ -175,34 +178,23 @@ function Payment(props) {
                     </h4>
 
                     <hr />
+                    {
+                      temp.map((element, i) => {
+                        total += parseInt(element.price) * parseInt(element.amount)
+                        return (
 
-                    <dl className="row">
-                      <dd className="col-sm-8">
-                        MDBootstrap UI KIT (jQuery version) - License 6-10
-                        poeple + unlimited projects
-                      </dd>
-                      <dd className="col-sm-4">$ 2000</dd>
-                    </dl>
-
-                    <hr />
-
-                    <dl className="row">
-                      <dd className="col-sm-8">Premium support - 2 years</dd>
-                      <dd className="col-sm-4">$ 2000</dd>
-                    </dl>
-
-                    <hr />
-
-                    <dl className="row">
-                      <dd className="col-sm-8">MDB Membership - 2 years</dd>
-                      <dd className="col-sm-4">$ 2000</dd>
-                    </dl>
-
-                    <hr />
-
+                          <dl className="row" key={i}>
+                            <dd className="col-sm-8">
+                              {element.product_name}
+                            </dd>
+                            <dd className="col-sm-4">$ {parseInt(element.price) * parseInt(element.amount)}</dd>
+                          </dl>
+                        )
+                      })
+                    }
                     <dl className="row">
                       <dt className="col-sm-8">Total</dt>
-                      <dt className="col-sm-4">$ 2000</dt>
+                      <dt className="col-sm-4">$ {total}</dt>
                     </dl>
                   </div>
                 </div>

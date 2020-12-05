@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const ModalCarShowProduct = (props) => {
   const { product_name, image, description, price, ingredients } = props;
+  var temp = JSON.parse(localStorage.getItem("Car-shop"));
 
   const [modal, setModal] = useState(false);
 
@@ -19,7 +20,6 @@ const ModalCarShowProduct = (props) => {
   const addToCar = (e) => {
     e.preventDefault();
     //guarda en el storage el producto a comprar.
-    var temp = JSON.parse(localStorage.getItem("Car-shop"));
     // localStorage.removeItem("Car-shop");
     // console.log(temp);
     var newElement = true;

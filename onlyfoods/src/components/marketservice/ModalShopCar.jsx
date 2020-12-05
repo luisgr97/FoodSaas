@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Badge,
@@ -13,12 +13,24 @@ import {
 const ModalCarShop = (props) => {
   const { className } = props;
 
-  const [modal, setModal] = useState(false);
 
   var temp = JSON.parse(localStorage.getItem("Car-shop"));
   var total = 0;
 
+  const [products, setProducts] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    setProducts(temp);
+  }, [temp]);
+
   const toggle = () => setModal(!modal);
+
+  const removeElement = index => {
+    temp.splice(index, 1);
+    setProducts(temp);
+    localStorage.setItem("Car-shop", JSON.stringify(temp));
+  }
 
   const closeBtn = (
     <button
@@ -88,7 +100,7 @@ const ModalCarShop = (props) => {
                 </thead>
                 <tbody>
                   {
-                    temp.map((element, index) => {
+                    products.map((element, index) => {
                       total += parseInt(element.price) * parseInt(element.amount);
                       return (
                         <tr key={index}>
@@ -125,6 +137,7 @@ const ModalCarShop = (props) => {
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Remove item"
+                              onClick={() => removeElement(index)}
                             >
                               X
                             </button>

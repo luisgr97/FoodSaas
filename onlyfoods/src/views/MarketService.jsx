@@ -23,13 +23,14 @@ function MarketServices(props) {
   //Propiedades.
   const { subdomain } = props;
   //Estado.
-  const [active_step] = useState(1);
+  const [active_step] = useState(0);
   const [products, setProducts] = useState(null);
   //libreria para peticiones http
-  var shop = [];
-  localStorage.setItem("Car-shop", JSON.stringify(shop));
-
-
+  var temp = JSON.parse(localStorage.getItem("Car-shop"));
+  if (!temp) {
+    var shop = [];
+    localStorage.setItem("Car-shop", JSON.stringify(shop));
+  }
 
 
   //instancia mentodos.
