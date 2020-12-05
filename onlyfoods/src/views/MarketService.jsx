@@ -6,7 +6,7 @@ import Stepper from "react-stepper-horizontal";
 //Componentes locales.
 import Shop from "./marketservice/Shop";
 import Payment from "./marketservice/Payment";
-import EditShop from "./marketservice/EditShoping";
+// import EditShop from "./marketservice/EditShoping";
 import Cofirmation from "./marketservice/Confirmation";
 
 //Imagenes de los clientes.
@@ -23,7 +23,7 @@ function MarketServices(props) {
   //Propiedades.
   const { subdomain } = props;
   //Estado.
-  const [active_step] = useState(0);
+  const [active_step] = useState(1);
   const [products, setProducts] = useState(null);
   //libreria para peticiones http
   var shop = [];
@@ -72,7 +72,7 @@ function MarketServices(props) {
         <Stepper
           steps={[
             { title: "Selecciona tus productos" },
-            { title: "Personaliza tu compra" },
+            // { title: "Personaliza tu compra" },
             { title: "Confirma el envio a tu domicilio" },
             { title: "Efectua tu compra" },
           ]}
@@ -82,12 +82,11 @@ function MarketServices(props) {
       {active_step === 0 ? (
         <Shop products={products} />
       ) : active_step === 1 ? (
-        <EditShop />
-      ) : active_step === 2 ? (
         <Cofirmation />
-      ) : (
-              <Payment />
-            )}
+      ) : active_step === 2 ? (
+        <Payment />
+      ) : true
+      }
     </div>
   );
 }

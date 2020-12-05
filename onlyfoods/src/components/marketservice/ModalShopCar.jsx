@@ -8,7 +8,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Input,
 } from "reactstrap";
 
 const ModalCarShop = (props) => {
@@ -49,7 +48,7 @@ const ModalCarShop = (props) => {
           zIndex: "3",
         }}
       >
-        <i class="fas fa-shopping-cart lg">
+        <i className="fas fa-shopping-cart lg">
           <Badge color="dark" pill></Badge>
         </i>
       </Button>
@@ -63,54 +62,56 @@ const ModalCarShop = (props) => {
         ></ModalHeader>
         <ModalBody>
           <section>
-            <div class="table-responsive">
-              <table class="table product-table table-cart-v-1">
+            <div className="table-responsive">
+              <table className="table product-table table-cart-v-1">
                 <thead>
                   <tr>
-                    <th></th>
-                    <th class="font-weight-bold">
+                    <th>
+                      <strong>Imagen</strong>
+                    </th>
+                    <th className="font-weight-bold">
                       <strong>Producto</strong>
                     </th>
                     <th></th>
-                    <th class="font-weight-bold">
+                    <th className="font-weight-bold">
                       <strong>Precio</strong>
                     </th>
                     <th></th>
-                    <th class="font-weight-bold">
+                    <th className="font-weight-bold">
                       <strong>Cantidad</strong>
                     </th>
                     <th></th>
-                    <th class="font-weight-bold">
+                    <th className="font-weight-bold">
                       <strong>Sub Total</strong>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {
-                    temp.map((element) => {
+                    temp.map((element, index) => {
                       total += parseInt(element.price) * parseInt(element.amount);
                       return (
-                        <tr>
+                        <tr key={index}>
                           <th scope="row">
                             <img
                               alt="imadfdsge"
                               src={element.image}
-                              class="img-fluid z-depth-0"
+                              className="img-fluid z-depth-0"
                             />
                           </th>
                           <td>
-                            <h5 class="mt-3">
-                              <strong>{element.product_name}</strong>
+                            <h5 className="mt-3">
+                              {element.product_name}
                             </h5>
                           </td>
                           <td>|</td>
                           <td>${element.price}</td>
-                          <td>x</td>
                           <td>
-                            <Input type="number" value={element.amount} />
+                            <center>x</center>
                           </td>
+                          <td> {element.amount}</td>
                           <td>=</td>
-                          <td class="font-weight-bold">
+                          <td className="font-weight-bold">
                             <strong>
                               $
                               {parseInt(element.price) *
@@ -120,7 +121,7 @@ const ModalCarShop = (props) => {
                           <td>
                             <button
                               type="button"
-                              class="btn btn-sm btn-primary"
+                              className="btn btn-sm btn-primary"
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Remove item"
@@ -136,12 +137,12 @@ const ModalCarShop = (props) => {
                     <td colspan="3"></td>
                     <td colspan="3"></td>
                     <td>
-                      <h4 class="mt-2">
+                      <h4 className="mt-2">
                         <strong>Total</strong>
                       </h4>
                     </td>
-                    <td class="text-right">
-                      <h4 class="mt-2">
+                    <td className="text-right">
+                      <h4 className="mt-2">
                         <strong>${total}</strong>
                       </h4>
                     </td>

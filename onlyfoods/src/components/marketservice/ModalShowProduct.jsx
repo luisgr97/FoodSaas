@@ -21,18 +21,17 @@ const ModalCarShowProduct = (props) => {
     //guarda en el storage el producto a comprar.
     var temp = JSON.parse(localStorage.getItem("Car-shop"));
     // localStorage.removeItem("Car-shop");
-    console.log(temp);
-    var repet = false;
+    // console.log(temp);
+    var newElement = true;
     //Si ya esta adicionado al carrito, sumele uno a la cantidad.
     temp.forEach((element) => {
       if (element.product_name === product_name) {
-        repet = true;
-      } else {
         element.amount += 1;
+        newElement = false;
       }
     });
     //Si es la primera vez que se agrega.
-    if (!repet) {
+    if (newElement) {
       temp.push({
         product_name,
         image,
@@ -42,7 +41,7 @@ const ModalCarShowProduct = (props) => {
         amount: 1,
       });
     }
-    console.log(temp);
+    // console.log(temp);
     localStorage.setItem("Car-shop", JSON.stringify(temp));
     //cierra el modal.
     toggle();
