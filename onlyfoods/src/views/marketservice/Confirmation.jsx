@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { Button, ButtonGroup, Input } from "reactstrap";
+// import axios from "axios";
 
 function Payment(props) {
   // const [rSelected, setRSelected] = useState(null);
 
   var temp = JSON.parse(localStorage.getItem("Car-shop"));
   var total = 0;
+
+  useEffect(() => {
+    // axios.post("")
+  })
 
   return (
     <div className="container mt-5">
@@ -85,47 +90,6 @@ function Payment(props) {
                         class="form-control mb-4"
                         placeholder="Apartment or suite"
                       />
-
-                      <div class="row">
-                        <div class="col-lg-4 col-md-12 mb-4">
-                          <label for="country">Country</label>
-                          <select
-                            class="custom-select d-block w-100"
-                            id="country"
-                            required
-                          >
-                            <option value="">Choose...</option>
-                            <option>United States</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            Please select a valid country.
-                        </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                          <label for="state">State</label>
-                          <select class="custom-select d-block w-100" id="state" required>
-                            <option value="">Choose...</option>
-                            <option>California</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            Please provide a valid state.
-                          </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                          <label for="zip">Zip</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="zip"
-                            placeholder=""
-                            required
-                          />
-                          <div class="invalid-feedback">Zip code required.</div>
-                        </div>
-                      </div>
-
                       <hr />
 
                       <div class="mb-1">
@@ -138,27 +102,6 @@ function Payment(props) {
                           I accept the terms and conditions
               </label>
                       </div>
-                      <div class="mb-1">
-                        <input
-                          type="checkbox"
-                          class="form-check-input filled-in"
-                          id="safeTheInfo"
-                        />
-                        <label class="form-check-label" for="safeTheInfo">
-                          Save this information for next time
-              </label>
-                      </div>
-                      <div class="mb-1">
-                        <input
-                          type="checkbox"
-                          class="form-check-input filled-in"
-                          id="subscribeNewsletter"
-                        />
-                        <label class="form-check-label" for="subscribeNewsletter">
-                          Subscribe to the newsletter
-              </label>
-                      </div>
-
                     </form>
                   </div>
                   <hr class="mb-4" />

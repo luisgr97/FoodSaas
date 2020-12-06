@@ -45,7 +45,7 @@ class Login extends React.Component {
         });
     };
 
-    async componentDidMount(){
+    async componentDidMount() {
         const res = await fetch(api.route + "/api/users/type/list");
         const data = await res.json();
         console.log("====>", data);
@@ -116,7 +116,11 @@ class Login extends React.Component {
                 auth.login(obj, rou => {
                     this.setState({ doAnime: true });
                     window.setTimeout(() => {
-                        this.props.history.push("/" + rou)
+                        if (rou === "manager") { /////////////////////////////////
+                            this.props.history.push("/");
+                        } else {
+                            this.props.history.push("/" + rou);
+                        }
                     }, delay);
                 });
             })

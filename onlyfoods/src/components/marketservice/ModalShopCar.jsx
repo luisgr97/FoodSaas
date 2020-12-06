@@ -10,7 +10,9 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-import auth from "components/auth/auth";
+import { Link } from "react-router-dom";
+
+import auth from "components/auth/auth.js";
 
 const ModalCarShop = (props) => {
   const { className } = props;
@@ -119,9 +121,9 @@ const ModalCarShop = (props) => {
                             />
                           </th>
                           <td>
-                            <h5 className="mt-3">
+                            <h6 className="mt-3">
                               {element.product_name}
-                            </h5>
+                            </h6>
                           </td>
                           <td>|</td>
                           <td>${element.price}</td>
@@ -174,13 +176,16 @@ const ModalCarShop = (props) => {
         </ModalBody>
         <ModalFooter>
           {
-            auth.isAuthenticated ?
+            auth.isAuthenticated() ?
               <Button color="primary" onClick={setStep2}>
                 Avanzar al siguiente paso
-            </Button> :
-              <Button color="danger">
+              </Button> :
+              <Link to="/login" className="btn btn-danger">
                 Iniciar sesión para continuar
-            </Button>
+              </Link>
+            //   <Button color="danger">
+            //     Iniciar sesión para continuar
+            // </Button>
           }
 
           {" "}

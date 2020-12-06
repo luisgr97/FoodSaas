@@ -13,7 +13,7 @@ class Auth{
     logout(cb){
         // Debo cambiar ambos
         this.authenticated = null;
-        localStorage.clear();
+        localStorage.removeItem("session");
         cb();
     }
 
