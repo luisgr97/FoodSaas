@@ -99,7 +99,7 @@ function Payment(props) {
                           </select>
                           <div class="invalid-feedback">
                             Please select a valid country.
-                </div>
+                        </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 mb-4">
@@ -110,7 +110,7 @@ function Payment(props) {
                           </select>
                           <div class="invalid-feedback">
                             Please provide a valid state.
-                </div>
+                          </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 mb-4">
@@ -159,11 +159,6 @@ function Payment(props) {
               </label>
                       </div>
 
-                      <hr />
-
-                      <button class="btn btn-primary btn-lg btn-block" type="submit">
-                        Siguiente Paso
-            </button>
                     </form>
                   </div>
                   <hr class="mb-4" />
@@ -198,6 +193,22 @@ function Payment(props) {
                     </dl>
                   </div>
                 </div>
+                <div>
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn btn-secondary btn-lg btn-block" type="submit" onClick={() => props.setStep(0)}>
+                        Atrás
+                        </button>
+                    </div>
+
+                    <div class="col">
+                      <button class="btn btn-primary btn-lg btn-block" type="submit" onClick={() => props.setStep(2)}>
+                        Seguir
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

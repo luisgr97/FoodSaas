@@ -10,6 +10,8 @@ import {
   ModalFooter,
 } from "reactstrap";
 
+import auth from "components/auth/auth";
+
 const ModalCarShop = (props) => {
   const { className } = props;
 
@@ -30,6 +32,11 @@ const ModalCarShop = (props) => {
     temp.splice(index, 1);
     setProducts(temp);
     localStorage.setItem("Car-shop", JSON.stringify(temp));
+  }
+
+  const setStep2 = () => {
+    setModal(!modal);
+    props.setStep(1);
   }
 
   const closeBtn = (
@@ -166,9 +173,17 @@ const ModalCarShop = (props) => {
           </section>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Personalizar Compra
-          </Button>{" "}
+          {
+            auth.isAuthenticated ?
+              <Button color="primary" onClick={setStep2}>
+                Avanzar al siguiente paso
+            </Button> :
+              <Button color="danger">
+                Iniciar sesión para continuar
+            </Button>
+          }
+
+          {" "}
           <Button color="secondary" onClick={toggle}>
             Cancelar
           </Button>

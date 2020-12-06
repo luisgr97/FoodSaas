@@ -23,7 +23,7 @@ function MarketServices(props) {
   //Propiedades.
   const { subdomain } = props;
   //Estado.
-  const [active_step] = useState(0);
+  const [active_step, setStep] = useState(1);
   const [products, setProducts] = useState(null);
   //libreria para peticiones http
   var temp = JSON.parse(localStorage.getItem("Car-shop"));
@@ -81,11 +81,11 @@ function MarketServices(props) {
         />
       </div>
       {active_step === 0 ? (
-        <Shop products={products} />
+        <Shop products={products} setStep={setStep} />
       ) : active_step === 1 ? (
-        <Cofirmation />
+        <Cofirmation setStep={setStep} />
       ) : active_step === 2 ? (
-        <Payment />
+        <Payment setStep={setStep} />
       ) : true
       }
     </div>

@@ -129,6 +129,13 @@ function Payment(props) {
                     <button className="btn btn-primary btn-lg btn-block">
                       Enviar Pago
                     </button>
+                    <div class="row">
+                      <div class="col">
+                        <button class="btn btn-secondary btn-lg btn-block" type="submit" onClick={() => props.setStep(1)}>
+                          Atrás
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

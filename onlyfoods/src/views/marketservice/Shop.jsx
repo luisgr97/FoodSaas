@@ -7,7 +7,7 @@ import Modal from "../../components/marketservice/ModalShopCar";
 import { Spinner } from "reactstrap";
 
 
-function Shop({ products }) {
+function Shop({ products, setStep }) {
   //Propiedades.
   const [query, setQuery] = useState("");
   const [list, setList] = useState([]);
@@ -36,7 +36,7 @@ function Shop({ products }) {
     <Fragment>
       <Search onChange={handleOnChange} onClick={handleSearch} />
       <div className="row">
-        <Modal />
+        <Modal setStep={setStep} />
         <div className="col-12">
           <ul
             className="nav  nav-justified"
