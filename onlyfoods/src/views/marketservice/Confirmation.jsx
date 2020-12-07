@@ -1,12 +1,34 @@
-import React, { useEffect } from "react";
-// import { Button, ButtonGroup, Input } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Input } from "reactstrap";
 // import axios from "axios";
 
 function Payment(props) {
-  // const [rSelected, setRSelected] = useState(null);
 
   var temp = JSON.parse(localStorage.getItem("Car-shop"));
   var total = 0;
+
+  // const [rSelected, setRSelected] = useState(null);
+  const [check, setCheck] = useState(false);
+  const [info, setInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    phone: ""
+  });
+
+  const setCheckHandler = () => {
+    setCheck(!check);
+  }
+
+  const handleInfo = e => {
+    // console.log(info);
+    // console.log(check);
+    let obj = info;
+    obj[e.target.name] = e.target.value;
+    setInfo(obj);
+  }
+
 
   useEffect(() => {
     // axios.post("")
@@ -20,91 +42,71 @@ function Payment(props) {
             <div className="row">
               <div className="col-lg-8">
                 <div
-                  class="tab-pane active"
+                  className="tab-pane active"
                   id="tabCheckoutAddons123"
                   role="tabpanel"
                 >
                   <hr />
                   <div
-                    class="tab-pane fade in show active"
+                    className="tab-pane fade in show active"
                     id="tabCheckoutBilling123"
                     role="tabpanel"
                   >
                     <form>
-                      <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <label for="firstName" class="">
-                            First name
+                      <div className="row">
+                        <div className="col-md-6 mb-4">
+                          <label for="firstName" className="">
+                            Nombres
                 </label>
-                          <input type="text" id="firstName" class="form-control" />
+                          <input type="text" name="firstName" className="form-control" onChange={handleInfo} />
                         </div>
 
-                        <div class="col-md-6 mb-2">
-                          <label for="lastName" class="">
-                            Last name
+                        <div className="col-md-6 mb-2">
+                          <label for="lastName" className="">
+                            Apellidos
                 </label>
-                          <input type="text" id="lastName" class="form-control" />
+                          <input type="text" name="lastName" className="form-control" onChange={handleInfo} />
                         </div>
                       </div>
-
-                      <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">
-                            @
-                </span>
-                        </div>
-                        <input
-                          type="text"
-                          class="form-control py-0"
-                          placeholder="Username"
-                          aria-describedby="basic-addon1"
-                        />
-                      </div>
-
-                      <label for="email" class="">
-                        Email (optional)
+                      <label for="email" className="">
+                        Email
             </label>
                       <input
                         type="text"
-                        id="email"
-                        class="form-control mb-4"
-                        placeholder="youremail@example.com"
+                        name="email"
+                        className="form-control mb-4"
+                        onChange={handleInfo}
                       />
 
-                      <label for="address" class="">
-                        Address
+                      <label for="address" className="">
+                        Dirección
             </label>
                       <input
                         type="text"
-                        id="address"
-                        class="form-control mb-4"
-                        placeholder="1234 Main St"
+                        name="address"
+                        className="form-control mb-4"
+                        onChange={handleInfo}
                       />
 
-                      <label for="address-2" class="">
-                        Address 2 (optional)
+                      <label for="address-2" className="">
+                        Celular
             </label>
                       <input
-                        type="text"
-                        id="address-2"
-                        class="form-control mb-4"
-                        placeholder="Apartment or suite"
+                        type="number"
+                        name="phone"
+                        className="form-control mb-4"
+                        onChange={handleInfo}
                       />
                       <hr />
-
-                      <div class="mb-1">
-                        <input
-                          type="checkbox"
-                          class="form-check-input filled-in"
-                          id="chekboxRules"
-                        />
-                        <label class="form-check-label" for="chekboxRules">
-                          I accept the terms and conditions
-              </label>
+                      <div className="form-control mb-4">
+                        <Input type="checkbox" onChange={setCheckHandler} />
+                        <label>
+                          Acepto los terminos y condiciones
+                        </label>
                       </div>
                     </form>
                   </div>
-                  <hr class="mb-4" />
+                  <hr className="mb-4" />
                 </div>
               </div>
 
@@ -137,16 +139,16 @@ function Payment(props) {
                   </div>
                 </div>
                 <div>
-                  <div class="row">
-                    <div class="col">
-                      <button class="btn btn-secondary btn-lg btn-block" type="submit" onClick={() => props.setStep(0)}>
+                  <div className="row">
+                    <div className="col">
+                      <button className="btn btn-secondary btn-lg btn-block" type="submit" onClick={() => props.setStep(0)}>
                         Atrás
                         </button>
                     </div>
 
-                    <div class="col">
-                      <button class="btn btn-primary btn-lg btn-block" type="submit" onClick={() => props.setStep(2)}>
-                        Seguir
+                    <div className="col">
+                      <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={() => props.setStep(2)} disabled={!check}>
+                        Siguiente
                       </button>
                     </div>
                   </div>
