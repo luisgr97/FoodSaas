@@ -88,15 +88,15 @@ class Login extends React.Component {
 
                 let user_type_name;
 
-                switch (given.user_data.typeuser) {
-                    case 10:
+                switch (given.user_data.typeuser.typeusers) {
+                    case "administrador":
                         user_type_name = "admin"; //admin ********
                         break;
-                    case 11:
-                        user_type_name = "operator" //digitador ********
+                    case "digitador":
+                        user_type_name = "digitador" //digitador ********
                         break;
-                    case 12:
-                        user_type_name = "manager"; //cliente ********
+                    case "cliente":
+                        user_type_name = "cliente"; //cliente ********
                         break
                     default:
                         break;
@@ -105,7 +105,7 @@ class Login extends React.Component {
                 let obj = {
                     "token": given.token,
                     "user_id": given.user_data.document_id,
-                    "user_type": given.user_data.typeuser,
+                    // "user_type": given.user_data.typeuser,
                     "user_type_name": user_type_name,
                     "id": given.user_data.id,
                     "plan": given.plan
@@ -116,7 +116,7 @@ class Login extends React.Component {
                 auth.login(obj, rou => {
                     this.setState({ doAnime: true });
                     window.setTimeout(() => {
-                        if (rou === "manager") { /////////////////////////////////
+                        if (rou === "cliente") { /////////////////////////////////
                             this.props.history.push("/");
                         } else {
                             this.props.history.push("/" + rou);

@@ -1,13 +1,13 @@
-// import CreateReports from "views/manager/CreateReports.jsx";
+import CreateReports from "views/manager/ProfileClient.jsx";
 
-// var managerRoutes = [
-//   {
-//     path: "/createReports",
-//     name: "Create Report",
-//     icon: "nc-icon nc-diamond",
-//     component: CreateReports,
-//     layout: "/manager"
-//   }
-// ];
+var managerRoutes = [
+  {
+    path: "/profile",
+    name: "Perfil",
+    icon: "nc-icon nc-diamond",
+    component: CreateReports,
+    layout: "/cliente"
+  }
+];
 
-// export default managerRoutes;
+export default managerRoutes;

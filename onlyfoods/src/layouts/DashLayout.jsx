@@ -68,7 +68,7 @@ class DashLayout extends React.Component {
     const la = this.props.routes[0].layout;
     if (la === "/admin") {
       return "success";
-    } else if (la === "/operator") {
+    } else if (la === "/digitador") {
       return "warning";
     } else {
       return "info";
@@ -83,7 +83,7 @@ class DashLayout extends React.Component {
       const la = this.props.routes[0].layout;
       if (la === "/admin") {
         return "green";
-      } else if (la === "/operator") {
+      } else if (la === "/digitador") {
         return "yellow";
       } else {
         return "blue";

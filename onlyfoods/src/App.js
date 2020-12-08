@@ -33,8 +33,8 @@ function App() {
                     <Route exact path="/buy_plan/:plan" component={BuyPlan} />
 
                     <ProtectedRoute path="/admin" userType="admin" render={props => <DashLayout {...props} routes={routesAdmin} loggedInBtn={true} />} />
-                    <ProtectedRoute path="/operator" userType="operator" render={props => <DashLayout {...props} routes={routesOperator} loggedInBtn={true} />} />
-                    <ProtectedRoute path="/manager" userType="manager" render={props => <DashLayout {...props} routes={routesManager} loggedInBtn={true} />} />
+                    <ProtectedRoute path="/digitador" userType="digitador" render={props => <DashLayout {...props} routes={routesOperator} loggedInBtn={true} />} />
+                    <ProtectedRoute path="/cliente" userType="cliente" render={props => <DashLayout {...props} routes={routesManager} loggedInBtn={true} />} />
 
                     <Redirect exact to="/" />
                 </Switch>

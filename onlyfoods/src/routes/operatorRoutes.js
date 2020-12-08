@@ -13,21 +13,24 @@ var operatorRoutes = [
     name: "Gestion de Menus",
     icon: "nc-icon nc-diamond",
     component: Menus,
-    layout: "/operator"
+    layout: "/digitador",
+    plan: "Basico"
   },
   {
     path: "/productos",
     name: "Gestion de Productos",
     icon: "nc-icon nc-diamond",
     component: Productos,
-    layout: "/operator"
+    layout: "/digitador",
+    plan: "Basico"
   },
   {
     path: "/ingredientes",
     name: "Ges. Ingredientes",
     icon: "nc-icon nc-diamond",
     component: Ingredientes,
-    layout: "/operator"
+    layout: "/digitador",
+    plan: "Basico"
   },
   // {
   //   path: "/createClient",
