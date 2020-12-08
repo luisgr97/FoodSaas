@@ -19,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
                 'min_length': 6,
             }
         }
+        depth = 2
 
     def create(self, validated_data):
         """Create a new user object"""
