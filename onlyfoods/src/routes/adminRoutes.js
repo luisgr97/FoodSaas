@@ -5,6 +5,7 @@ import GetUser from "views/admin/GetUser.jsx";
 import TransformersMap from "views/admin/TransformersMap.jsx";
 import Customization from "views/admin/Customization.jsx";
 import CreateReports from "views/admin/CreateReports.jsx";
+import Pwa from "views/admin/Pwa.jsx";
 
 
 // import CreateReports from "views/manager/CreateReports.jsx";
@@ -58,10 +59,10 @@ var adminRoutes = [
     plan: "Premium",
   },
   {
-    path: "/bot",
+    path: "/pwa",
     name: "PWA | Bot",
     icon: "nc-icon nc-pin-3",
-    component: "sdsf",
+    component: Pwa,
     layout: "/admin",
     plan: "Premium",
   },
