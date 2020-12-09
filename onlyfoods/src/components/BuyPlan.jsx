@@ -13,9 +13,11 @@ import {
     Col, Form, FormGroup, Label, Input, Button, Alert
 } from "reactstrap";
 
-// import axios from "axios";
+import axios from "axios";
 
 // import api from "../api_route.js";
+
+import ReactLoading from 'react-loading';
 
 import counterpart from "counterpart";
 import * as Tr from "react-translate-component";
@@ -47,36 +49,66 @@ class BuyPlan extends React.Component {
             error: false,
             errorMsg: "",
             sended: false,
-            sendedMsg: ""
+            sendedMsg: "",
+
+            loadingSchema: false,
+            loadingDomain: false,
+            done: false
         }
     }
 
     handleInput = e => {
-        this.setState({ contract: e.target.value });
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     handleSubmit = e => {
+        console.log(this.state);
         e.preventDefault();
-        alert("Esta es tu ruta: https://crepes.localhost.com/");
-        // if (this.state.contract !== "") {
-        //     axios.post("https://energycorp.herokuapp.com/api/invoice/by-contract/", { contractNumber: parseInt(this.state.contract) })
-        //         .then(res => {
-        //             var { error, find } = res.data;
-        //             if (error === true || find === false) {
-        //                 // MENSAJE DE ERROR POR TRANSLATE
-        //                 // console.log(message)
-        //                 this.setState({ error: true, errorMsg: counterpart.translate('getBill.error') });
-        //                 window.setTimeout(() => {
-        //                     this.setState({ error: false, errorMsg: "" });
-        //                 }, 2000);
-        //             } else {
-        //                 this.setState({ bills: res.data.invoices })
-        //             }
-        //         })
-        //         .catch(err => {
-        //             console.log(err);
-        //         })
-        // }
+
+        let idplan = 0;
+        if (this.state.plan === "basico") {
+            idplan = 1;
+        } else if (this.state.plan === "normal") {
+            idplan = 2;
+        } else {
+            idplan = 3;
+        }
+
+        let data = {
+            "schema_name": this.state.franquicia,
+            "name": this.state.franquicia,
+            "paid_until": "12-31-2020",
+            "on_trial": false,
+            "is_active": true,
+            "plan": idplan
+        }
+        console.log(data);
+        this.setState({ loadingSchema: true });
+        axios.post("http://localhost:8000/api/tenants/client/create", data)
+            .then(res => {
+                let tenantid = res.data.id;
+                console.log("====> TenantID", tenantid);
+
+                // let domaindata = {
+                //     "domain": this.state.franquicia + ".localhost",
+                //     "is_primary": true,
+                //     "tenant": tenantid
+                // }
+
+                // this.setState({ loadingSchema: false, loadingDomain: true });
+
+                // axios.post("http://localhost:8000/api/tenants/domain/create", domaindata)
+                //     .then(res => {
+                //         this.setState({ loadingDomain: false, done: true });
+                //     })
+                //     .catch(err => {
+                //         console.log(err);
+                //     })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
 
     componentDidMount() {
@@ -146,10 +178,31 @@ class BuyPlan extends React.Component {
                                 </FormGroup>
                                 <center>
                                     <Button color="success">
-                                        {/* <Tr content="getBill.download" /> */}
                                         Crear
                                     </Button>
                                     <br />
+                                    {
+                                        this.state.loadingSchema ? <div>
+                                            <center>
+                                                <h3>Creando schema....</h3>
+                                                <br />
+                                                <ReactLoading type="spin" color="green"></ReactLoading>
+                                            </center>
+                                        </div> : true
+                                    }
+                                    {
+                                        this.state.loadingDomain ? <div>
+                                            <center>
+                                                <h3>Creando Dominio....</h3>
+                                                <br />
+                                                <ReactLoading type="spin" color="red"></ReactLoading>
+                                            </center>
+                                        </div> : true
+                                    }
+                                    {
+                                        this.state.done ? <h3>Listo!</h3> : true
+                                    }
+
                                     <Link to="/">
                                         <Tr content="getBill.home" />
                                     </Link>

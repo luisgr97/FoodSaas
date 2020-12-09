@@ -12,7 +12,9 @@ import Cofirmation from "./marketservice/Confirmation";
 //Imagenes de los clientes.
 import kokoriko from "../assets/images/kokoriko.jpg";
 import dominos from "../assets/images/dominos.png";
-import qbano from "../assets/images/qbano.png";
+// import qbano from "../assets/images/qbano.png";
+import icon from "../assets/images/icon.png";
+
 
 
 //peticiones http.
@@ -61,7 +63,7 @@ function MarketServices(props) {
         <div className="col-12">
           <img
             src={subdomain === "kokoriko" ? kokoriko :
-              subdomain === "dominos" ? dominos : qbano}
+              subdomain === "dominos" ? dominos : icon}
             style={{
               height: "300px",
               width: "400px",

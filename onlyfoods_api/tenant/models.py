@@ -15,6 +15,9 @@ class Plan(models.Model):
         verbose_name = 'plan'
         verbose_name_plural = 'plans'
 
+    def __str__(self):
+        return self.name
+
 
 class Client(TenantMixin):
     """Class Tenant, represent a scheme in the bd"""

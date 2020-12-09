@@ -20,7 +20,7 @@ class CrerateDigitator extends React.Component {
             phone_number: "",
             address: "", 
             date_of_birth: null, 
-            type_user: 11,
+            typeuser: 11,
             password: "uv2020", 
             is_staff: true,
         }

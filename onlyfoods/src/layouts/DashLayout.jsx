@@ -77,12 +77,19 @@ class DashLayout extends React.Component {
 
   getBackgroundColor = () => {
 
+    const la = this.props.routes[0].layout;
+
     if (this.props.color !== '') {
       return this.props.color;
     } else {
-      const la = this.props.routes[0].layout;
       if (la === "/admin") {
         return "green";
+        // let { color } = JSON.parse(localStorage.getItem("colorpanel"));
+        // if (color === "None") {
+        //   return "green";
+        // } else {
+        //   return color;
+        // }
       } else if (la === "/digitador") {
         return "yellow";
       } else {

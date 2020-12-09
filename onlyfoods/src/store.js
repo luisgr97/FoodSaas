@@ -1,4 +1,4 @@
-import {createStore} from "redux";
+import { createStore } from "redux";
 
 const initialState = {
     language: 'es',
@@ -17,7 +17,8 @@ const reducerLang = (state = initialState, action) => {
             ...state,
             name: action.name
         }
-    } else if (action.type === "CHANGE_COLOR"){
+    } else if (action.type === "CHANGE_COLOR") {
+        localStorage.setItem("colorpanel", JSON.stringify({ color: action.color }));
         return {
             ...state,
             color: action.color

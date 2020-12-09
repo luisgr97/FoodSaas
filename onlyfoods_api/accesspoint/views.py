@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.authtoken.models import Token
-from users.serializers.user_serializer import UserSerializer
+from users.serializers.user_serializer import UserSerializer, UserSerializer1
 from tenant.serializers.tenant_serializer import TenantShowPublicDataSerializer
 
 
@@ -39,7 +39,7 @@ class Log_in(APIView):
                         token, created = Token.objects.get_or_create(
                             user=user_token)
                         """revisa el perfil del usuario"""
-                        objserializer = UserSerializer(user_token).data
+                        objserializer = UserSerializer1(user_token).data
                         """Identifica el plan del tenant"""
                         tenant = Client.objects.get(name=schema)                        
                         return Response({"message": "Login exitoso",

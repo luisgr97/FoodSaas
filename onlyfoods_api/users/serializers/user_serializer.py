@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 from ..models import CustomUser
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer1(serializers.ModelSerializer):
     """Serializer class to object user"""
 
     class Meta:
@@ -20,6 +20,21 @@ class UserSerializer(serializers.ModelSerializer):
             }
         }
         depth = 2
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """Serializer class to object user"""
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'first_name', 'last_name',
+                  'document_id', 'phone_number', 'address', 'date_of_birth', 'typeuser', 'password', 'is_staff']
+        extra_kwargs = {
+            'password': {
+                'write_only': True,
+                'min_length': 6,
+            }
+        }
 
     def create(self, validated_data):
         """Create a new user object"""
