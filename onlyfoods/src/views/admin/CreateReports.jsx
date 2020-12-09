@@ -36,12 +36,12 @@ class CreateReports extends React.Component {
 
     let newPieChartData = {
       datasets: [{
-        data: [data.numclientsmora, data.numclientsuspended],
+        data: [5, 21],
         backgroundColor: ['red', 'yellow']
       }],
       labels: [
-        'Slow Payers',
-        'Suspended Clients'
+        'Productos individuales',
+        'Combos'
       ]
     };
 
@@ -53,15 +53,15 @@ class CreateReports extends React.Component {
     const dataBar = await resBar.json();
 
     let newBarChartDataHighest = {
-      labels: [dataBar.topfiveplus[0].codeCounter, dataBar.topfiveplus[1].codeCounter, dataBar.topfiveplus[2].codeCounter, dataBar.topfiveplus[4].codeCounter, dataBar.topfiveplus[4].codeCounter],
+      labels: ["Sandwich de pera", "Hamburguesa veg.", "Seviche de pollo", "Nuggets de pollo", "Waffle especial"],
       datasets: [{
-        label: 'Power Consumption',
+        label: 'Número de productos vendidos',
         data: [
-          dataBar.topfiveplus[0].value,
-          dataBar.topfiveplus[1].value,
-          dataBar.topfiveplus[2].value,
-          dataBar.topfiveplus[3].value,
-          dataBar.topfiveplus[4].value
+          17,
+          15,
+          12,
+          7,
+          5
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
@@ -75,20 +75,20 @@ class CreateReports extends React.Component {
     };
     // BarChartDataLowest
     let newBarChartDataLowest = {
-      labels: [dataBar.topfiveplus[4].codeCounter, dataBar.topfiveplus[3].codeCounter, dataBar.topfiveplus[2].codeCounter, dataBar.topfiveplus[1].codeCounter, dataBar.topfiveplus[0].codeCounter],
+      labels: ["Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
       datasets: [{
-        label: 'Power Consumption',
+        label: 'Ventas por día',
         data: [
-          dataBar.topfiveminus[4].value,
-          dataBar.topfiveminus[3].value,
-          dataBar.topfiveminus[2].value,
-          dataBar.topfiveminus[1].value,
-          dataBar.topfiveminus[0].value
+          15,
+          19,
+          23,
+          29,
+          25
         ],
         backgroundColor: [
           'rgba(153, 102, 255, 0.6)',
           'rgba(75, 192, 192, 0.6)',
-          'rgba(255,206, 86, 0.6)',
+          'rgba(175, 206, 86, 0.6)',
           'rgba(54, 162, 235, 0.6)',
           'rgba(255, 99, 132, 0.6)'
         ]
@@ -134,17 +134,17 @@ class CreateReports extends React.Component {
             <Col md="4">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h5">Choose a report</CardTitle>
-                  <p className="card-category">From the following options</p>
+                  <CardTitle tag="h5">Seleccione un reporte</CardTitle>
+                  <p className="card-category">de entre las siguientes opciones</p>
                 </CardHeader>
                 <CardBody>
-                  <Button color="primary" onClick={this.renderR1}>Slow sfsfsdfsfsfds and Suspended Users
+                  <Button color="primary" onClick={this.renderR1}>Compras por productos individuales / Combos 
                   </Button>
                   <br/>
-                  <Button color="primary" onClick={this.renderR2}>Highest Consuming Transformers
+                  <Button color="primary" onClick={this.renderR2}>Productos con la mayor cantidad de ventas /u
                   </Button>
                   <br/>
-                  <Button color="primary" onClick={this.renderR3}>Lowest Consuming Transformers
+                  <Button color="primary" onClick={this.renderR3}>Número de ventas por cada día de la semana
                   </Button>
                 </CardBody>
                 <CardFooter>
@@ -154,7 +154,7 @@ class CreateReports extends React.Component {
             <Col md="8">
               <Card className="card-chart">
                 <CardHeader>
-                  <CardTitle tag="h5">Currently Chosen Report</CardTitle>
+                  <CardTitle tag="h5">Reporte seleccionado</CardTitle>
                   <p className="card-category">-----</p>
                 </CardHeader>
                 <CardBody>
@@ -162,7 +162,7 @@ class CreateReports extends React.Component {
                     this.state.rInit ? (
                       <div>
                        <p>
-                         Choose a report from the options on your left side
+                         Seleccione un reporte de las opciones a la izquierda
                        </p>
                       </div>
                     ) : true
@@ -171,7 +171,7 @@ class CreateReports extends React.Component {
                     this.state.r1 ? (
                       <div>
                         <p>
-                         Number of Slow Payers and Suspended Users
+                         Compras individuales y de combos
                        </p>
                        <Pie
                         data = {{
@@ -186,7 +186,7 @@ class CreateReports extends React.Component {
                     this.state.r2 ? (
                       <div>
                         <p>
-                        Highest consuming transformers
+                        Productos más vendidos
                        </p>
                        <Bar
                         data = {this.state.barChartDataHighest}
@@ -201,7 +201,7 @@ class CreateReports extends React.Component {
                     this.state.r3 ? (
                       <div>
                         <p>
-                        Lowest consuming transformers
+                        Ventas por días de la semana
                        </p>
                        <Bar
                         data = {this.state.barChartDataLowest}
@@ -229,3 +229,4 @@ class CreateReports extends React.Component {
 }
 
 export default CreateReports;
+
