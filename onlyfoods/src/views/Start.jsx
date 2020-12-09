@@ -22,6 +22,7 @@ import logo from "../assets/images/logo.png";
 import bot_gif from "./bot_gif.gif";
 
 import { connect } from "react-redux";
+import auth from "components/auth/auth.js";
 
 counterpart.registerTranslations("en", english);
 counterpart.registerTranslations("es", spanish);
@@ -119,9 +120,13 @@ class Start extends React.Component {
             )}
         </div>
         {
-          this.state.visibleChat === true
-            ? <ChatBot close={this.closeChat} />
-            : <img onClick={this.openChat} className="floatingBot animated wobble" src={bot_gif} width="95px" height="120px" alt="description"></img>
+          auth.isAuthenticated() ? (
+            auth.getSession().plan === "Premium" ? (
+              this.state.visibleChat === true
+                ? <ChatBot close={this.closeChat} />
+                : <img onClick={this.openChat} className="floatingBot animated wobble" src={bot_gif} width="95px" height="120px" alt="description"></img>
+            ) : true
+          ) : true
         }
         {/* {
                     this.state.visibleChat
