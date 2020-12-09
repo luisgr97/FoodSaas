@@ -29,9 +29,9 @@ class CrerateDigitator extends React.Component {
     handleInput = e => {
 
         let v = e.target.value;
-        if (e.target.name === "document_id" || e.target.name === "phone_number"){
-            v = parseInt(v);
-        }
+        // if (e.target.name === "document_id" || e.target.name === "phone_number"){
+        //     v = parseInt(v);
+        // }
 
         this.setState({
             [e.target.name]: v

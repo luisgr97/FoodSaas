@@ -40,11 +40,13 @@ function Pwa() {
         <div className="content">
             <Row>
                 <Col sm="12">
-                    <br></br>
                     <h4>Instalar la aplicación web progresiva</h4>
                     <center>
                         <Card >
                             <CardBody>
+                                <center>
+                                    <img src="https://miro.medium.com/max/1600/1*KvALd7mDHM8ZmnNg2NTTnw.gif" width="700px" height="450px" alt="" />
+                                </center>
                                 <Button id="setup_button" aria-label="Install app" title="Install app"
                                     onClick={onClick}
                                 >

@@ -280,7 +280,7 @@ class TransformersMap extends Component {
   }
 
   componentDidMount() {
-    // this.getAllMapData();
+    this.getAllMapData();
   }
 
   render() {
