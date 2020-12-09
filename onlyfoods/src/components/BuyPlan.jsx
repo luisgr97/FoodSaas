@@ -71,13 +71,13 @@ class BuyPlan extends React.Component {
         } else if (this.state.plan === "normal") {
             idplan = 2;
         } else {
-            idplan = 3;
+            idplan = 5;
         }
 
         let data = {
             "schema_name": this.state.franquicia,
             "name": this.state.franquicia,
-            "paid_until": "12-31-2020",
+            "paid_until": "2020-12-31",
             "on_trial": false,
             "is_active": true,
             "plan": idplan
@@ -87,23 +87,24 @@ class BuyPlan extends React.Component {
         axios.post("http://localhost:8000/api/tenants/client/create", data)
             .then(res => {
                 let tenantid = res.data.id;
+                console.log(res);
                 console.log("====> TenantID", tenantid);
 
-                // let domaindata = {
-                //     "domain": this.state.franquicia + ".localhost",
-                //     "is_primary": true,
-                //     "tenant": tenantid
-                // }
+                let domaindata = {
+                    "domain": this.state.franquicia + ".localhost",
+                    "is_primary": true,
+                    "tenant": tenantid
+                }
 
-                // this.setState({ loadingSchema: false, loadingDomain: true });
+                this.setState({ loadingSchema: false, loadingDomain: true });
 
-                // axios.post("http://localhost:8000/api/tenants/domain/create", domaindata)
-                //     .then(res => {
-                //         this.setState({ loadingDomain: false, done: true });
-                //     })
-                //     .catch(err => {
-                //         console.log(err);
-                //     })
+                axios.post("http://localhost:8000/api/tenants/domain/create", domaindata)
+                    .then(res => {
+                        this.setState({ loadingDomain: false, done: true });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             })
             .catch(err => {
                 console.log(err);

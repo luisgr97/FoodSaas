@@ -51,5 +51,5 @@ class TenantShowPublicDataSerializer(serializers.ModelSerializer):
                   'plan',
                   'on_trial',
                   'created_on',
-                  'is_active']
+                  'is_active', 'id']
         depth = 1

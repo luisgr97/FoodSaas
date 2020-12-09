@@ -83,13 +83,13 @@ class DashLayout extends React.Component {
       return this.props.color;
     } else {
       if (la === "/admin") {
-        return "green";
-        // let { color } = JSON.parse(localStorage.getItem("colorpanel"));
-        // if (color === "None") {
-        //   return "green";
-        // } else {
-        //   return color;
-        // }
+        // return "green";
+        let { color } = JSON.parse(localStorage.getItem("colorpanel"));
+        if (color === "None") {
+          return "green";
+        } else {
+          return color;
+        }
       } else if (la === "/digitador") {
         return "yellow";
       } else {

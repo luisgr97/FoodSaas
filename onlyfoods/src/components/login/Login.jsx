@@ -45,10 +45,11 @@ class Login extends React.Component {
         });
     };
 
-    async componentDidMount() {
-        const res = await fetch(api.route + "/api/users/type/list");
-        const data = await res.json();
-        console.log("====>", data);
+    componentDidMount() {
+        let c = localStorage.getItem("colorpanel");
+        if (c === null) {
+            localStorage.setItem("colorpanel", JSON.stringify({ color: "None" }));
+        }
     }
 
     signin = e => {

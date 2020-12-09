@@ -14,7 +14,7 @@ import kokoriko from "../assets/images/kokoriko.jpg";
 import dominos from "../assets/images/dominos.png";
 // import qbano from "../assets/images/qbano.png";
 import icon from "../assets/images/icon.png";
-
+import { Button } from "reactstrap";
 
 
 //peticiones http.
@@ -92,8 +92,11 @@ function MarketServices(props) {
       ) : active_step === 3 ? (
         <center>
           <h1>FIN</h1>
+          <i>Espera el domicilio en 20 minutos</i>
           <br />
-          <button onClick={() => setStep(0)}>Regresar a la tienda</button>
+          <img src="https://i2.wp.com/codemyui.com/wp-content/uploads/2018/02/cheesy-pizza-loader.gif" alt="" />
+          <hr />
+          <Button onClick={() => setStep(0)}>Regresar a la tienda</Button>
         </center>
       ) : true
       }

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Input } from "reactstrap";
+import axios from "axios";
+
+import api from "../../api_route.js";
+import auth from "components/auth/auth.js";
+
+import ReactLoading from 'react-loading';
 
 function Payment(props) {
 
@@ -15,11 +21,37 @@ function Payment(props) {
     cvv: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleInfo = e => {
     // console.log(info);
     let obj = info;
     obj[e.target.name] = e.target.value;
     setInfo(obj);
+  }
+
+  const sendPayment = e => {
+    e.preventDefault();
+
+    let obj = {
+      "sub_total": 0,
+      "iva": 0,
+      "total": total,
+      "is_active": true,
+      "client": auth.getSession().id
+    }
+    setLoading(true);
+    axios.post(api.route + "/api/bills/create", obj)
+      .then(res => {
+        setLoading(false);
+        alert("Compra realizada con exito!");
+        localStorage.setItem('Car-shop', JSON.stringify([]));
+        props.setStep(3);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
   }
 
   return (
@@ -139,9 +171,13 @@ function Payment(props) {
                         </button>
                       </div>
                       <div className="col">
-                        <button className="btn btn-primary btn-lg btn-block" onClick={() => props.setStep(3)}>
-                          Enviar Pago
-                        </button>
+                        {
+                          !loading ? <button className="btn btn-primary btn-lg btn-block" onClick={sendPayment}>
+                            Enviar Pago
+                        </button> : <center>
+                              <ReactLoading type="bars" color="red"></ReactLoading>
+                            </center>
+                        }
                       </div>
                     </div>
                   </div>
